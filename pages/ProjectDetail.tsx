@@ -42,7 +42,8 @@ const ProjectCard: React.FC<{
   children: React.ReactNode;
   footerLabel?: string;
   isMedical?: boolean;
-}> = ({ title, image, link, children, footerLabel, isMedical = false }) => {
+  hideScroll?: boolean;
+}> = ({ title, image, link, children, footerLabel, isMedical = false, hideScroll = false }) => {
   const Content = (
     <div className="bg-[#fdf8f1] p-0 polaroid-shadow overflow-hidden flex flex-col md:flex-row h-full md:h-[350px] w-full max-w-5xl">
       <div className="md:w-1/3 h-48 md:h-full overflow-hidden border-b md:border-b-0 md:border-r border-black/5 shrink-0">
@@ -53,7 +54,7 @@ const ProjectCard: React.FC<{
         />
       </div>
       <div className="md:w-2/3 p-10 text-[#1d1d1b] flex flex-col h-full relative">
-        <div className={`overflow-y-auto pr-4 flex-grow ${isMedical ? 'delicate-scrollbar show-scroll-indicator' : 'scrollbar-thin scrollbar-thumb-primary/20'}`}>
+        <div className={`${hideScroll ? 'overflow-hidden' : 'overflow-y-auto'} pr-4 flex-grow ${isMedical ? 'delicate-scrollbar show-scroll-indicator' : (hideScroll ? '' : 'scrollbar-thin scrollbar-thumb-primary/20')}`}>
           <h2 className="font-display text-3xl font-bold mb-4 text-primary leading-tight">{title}</h2>
           <div className="font-display text-base leading-relaxed text-slate-800 space-y-4">
             {children}
@@ -139,7 +140,7 @@ const ProjectDetail: React.FC = () => {
           image="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80"
           isMedical={true}
         >
-          <p>Gastroesophageal reflux disease (GERD) is a common condition in the general population, characterized by the reflux of gastric food contents back into the esophagus. Esophageal reflux occurs physiologically over short periods of time and is considered pathological when it causes symptoms or damage to the esophageal mucosa. Reflux can cause damage not only to the esophagus but also to the pharynx or upper respiratory tract (vocal cords, trachea, bronchi).</p>
+          <p>Gastroesophageal reflux disease (GERD) is a common condition in the general population, characterized by the reflux of gastric food contents back into the esophagus. Esophageal reflux occurs physiologically over short periods of time and is considered pathological when it causes symptoms or damage to the esophageal mucosa. Reflux can damage not only the esophagus but also the pharynx or upper respiratory tract (vocal cords, trachea, bronchi).</p>
           <p>Most people can manage the discomfort caused by GERD through lifestyle changes and over-the-counter medication. But some people with GERD may need stronger medications or surgery to alleviate symptoms.</p>
           
           <div className="pt-2">
@@ -295,6 +296,122 @@ const ProjectDetail: React.FC = () => {
           footerLabel="Visit Article"
         >
           <p>After careful consideration, I’ve resolved that my goal for this year is to develop both personally and professionally, sharing ideas, information, and my experiences in hopes they might help you even slightly. Like everyone else, I planned major changes this year.</p>
+        </ProjectCard>
+      </PageWrapper>
+    );
+  }
+
+  // Creative Non-Fiction
+  if (id === '04') {
+    return (
+      <PageWrapper>
+        <ProjectCard 
+          title="i tried to talk to myself this morning"
+          image="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80"
+          link="https://substack.com/@mirunaaaa/p-174419877"
+          footerLabel="Visit Article"
+        >
+          <p>the season shift brought with it an amalgam of feelings. some days i am in awe of the natural beauty that surrounds me — the colors, the textures, the reminder that time keeps moving. other days, like today, i’m battling my own mind — trying to gather scattered thoughts and coming up short. i feel too much and do too little.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="6 brutal ways the wrong partner poisons your body and mind"
+          image="https://images.unsplash.com/photo-1516589174184-c6854b1d62df?auto=format&fit=crop&w=800&q=80"
+          link="https://substack.com/@mirunaaaa/p-173924357"
+          footerLabel="Visit Article"
+        >
+          <p>six years in a relationship that looked ordinary from the outside left me with a body i didn’t recognize, a mind that betrayed me, and a spirit that felt hollow. my digestion shut down. my sleep evaporated. my motivation collapsed. i woke up exhausted, lived exhausted, went to bed exhausted.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="you're too narcissistic to change yourself"
+          image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80"
+          link="https://substack.com/@mirunaaaa/p-172883900"
+          footerLabel="Visit Article"
+        >
+          <p>growing up, love was never soft. it was sharp, manipulative, something dangled in front of me like a prize i had to earn. i learned it in the way silence could stretch across a dinner table and cut deeper than any scream. i felt it in the way approval was rationed — as if pride or affection were luxuries i hadn’t yet deserved.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="your content is ruining my fall aesthetic!"
+          image="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80"
+          link="https://substack.com/@mirunaaaa/p-172777997"
+          footerLabel="Visit Article"
+        >
+          <p>there’s something incredibly nostalgic about the start of the fall season. not even a week in and my thoughts — and feed — are crowded with burnt colors, cozy sweaters, aesthetic writing corners, and the ever so popular pumpkin spice latte.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="I hate myself for still missing you"
+          image="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80"
+          link="https://substack.com/@mirunaaaa/p-171872857"
+          footerLabel="Visit Article"
+        >
+          <p>5 nights of silence and it feels like I’ve been left for dead. the truth is, the ache set it mere hours after the last words. I’d grown addicted to the way you filled my mornings, to the tiny pulse of your messages keeping me alive. I’d grown fond of your presence, despite it not being physical, and once it went away, my mind – especially my heart – was swallowed by the quiet.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="la vie en totally broke"
+          image="https://images.unsplash.com/photo-1548929977-d45d30495393?auto=format&fit=crop&w=800&q=80"
+          link="https://substack.com/@mirunaaaa/p-171551237"
+          footerLabel="Visit Article"
+        >
+          <p>This particular tale began, as many great tragedies do, with ambition, a modest salary, and the unmistakable scent of chocolate buttercream. The calendar had barely turned its page to July when I resolved, quite nobly, I might add, to adopt a life of order, of structure, of respectable employment. One does not simply drift through one’s mid-twenties on charm, eyeliner, and bra-less outfits alone.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="the struggle of comparison"
+          image="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=800&q=80"
+          link="https://substack.com/@mirunaaaa/p-171351771"
+          footerLabel="Visit Article"
+        >
+          <p>my entire life i’ve felt like i’m floating. no direction, no purpose, no map, just drifting in my own little bubble of chaos. just me, starring in a very low-budget indie film called existence. my friends, meanwhile, seem to have been given the deluxe package: careers, love lives, houses with more than one bathroom. and here i am, still wondering if it’s socially acceptable to eat cereal for dinner…again.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="courted, confused, and perpetually amused"
+          image="https://images.unsplash.com/photo-1533227268408-a7647dddea75?auto=format&fit=crop&w=800&q=80"
+          link="https://substack.com/@mirunaaaa/p-171255183"
+          footerLabel="Visit Article"
+        >
+          <p>The time is July 2025. It began, as most stories do, with good intentions, a desire for a fun time, and very short shorts. A gentleman caller I had the pleasure of meeting at a ball two days prior appeared into my inbox. After clearly stating his intentions of courting me, he invites me for a two-wheel carriage ride around the city. At 24, suddenly single, I felt duty-bound to collect courtesans like calling cards. I kindly accepted the invitation.</p>
+        </ProjectCard>
+      </PageWrapper>
+    );
+  }
+
+  // Interviews
+  if (id === '05') {
+    return (
+      <PageWrapper>
+        <ProjectCard 
+          title="Figeac is not just as a vineyard, but a legacy in every bottle"
+          image="https://images.unsplash.com/photo-1510850431481-748952f492bb?auto=format&fit=crop&w=800&q=80"
+          link="https://business-review.eu/profiles1/interviews-interviews/blandine-de-brier-manoncourt-co-owner-of-chateau-figeac-figeac-is-not-just-as-a-vineyard-but-a-legacy-in-every-bottle-254895"
+          footerLabel="Visit Interview"
+          hideScroll={true}
+        >
+          <p>Blandine de Brier Manoncourt, co-owner of Château-Figeac, delved into the nuances and challenges of the wine industry, while exploring the unique qualities of Château-Figeac. Mrs. de Brier Manoncourt shares her perspectives on various topics, from the impact of climate change on winemaking to the blend of tradition and innovation that characterizes their approach.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="Behind Stefanini EMEA Success: Marco Stefanini and Farlei Kothe Provide In-Depth Perspectives"
+          image="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=800&q=80"
+          link="https://business-review.eu/profiles1/interviews-interviews/stefaninis-growth-and-innovation-an-insiders-view-with-marco-stefanini-and-farlei-kothe-252896"
+          footerLabel="Visit Interview"
+          hideScroll={true}
+        >
+          <p>Marco Stefanini and Farlei Kothe shared their insights on digital transformation, starting a business at a young age, and their plans for Stefanini’s evolution. As the Global CEO and Founder of Stefanini Group, Marco Stefanini has been instrumental in driving the company’s growth and expansion into new markets.</p>
+        </ProjectCard>
+
+        <ProjectCard 
+          title="Shaping the Future of Work: Bruno Szarf and Andreea Miron on Stefanini’s Talent Strategy in Romania"
+          image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80"
+          link="https://business-review.eu/profiles1/interviews-interviews/shaping-the-future-of-work-bruno-szarf-and-andreea-miron-on-stefaninis-talent-strategy-in-romania-258067"
+          footerLabel="Visit Interview"
+          hideScroll={true}
+        >
+          <p>Bruno Szarf, the newly appointed Global CHRO at Stefanini, alongside Andreea Miron, HR EMEA Director, unveil their strategies for navigating the Romanian recruitment landscape. Together, they shed light on Stefanini’s unique approach to talent investment and development, the challenges and opportunities on the horizon,</p>
         </ProjectCard>
       </PageWrapper>
     );
