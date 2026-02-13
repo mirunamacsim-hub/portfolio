@@ -68,7 +68,7 @@ const Home: React.FC = () => {
             
             <div className="bg-[#fdfbf7] p-5 pb-12 polaroid-shadow">
               <div className="aspect-square bg-slate-200 overflow-hidden mb-6">
-                <img alt="Marketing" src="https://picsum.photos/seed/mkt/600/600" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all" />
+                <img alt="Marketing" src="https://i.pinimg.com/1200x/24/5d/c9/245dc9e0fa753ec6c163da103fa0c1c8.jpg" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all" />
               </div>
               <h3 className="font-display text-3xl text-[#1d1d1b] text-left">Marketing</h3>
             </div>
@@ -86,7 +86,7 @@ const Home: React.FC = () => {
             
             <div className="bg-[#fdfbf7] p-5 pb-12 polaroid-shadow border-2 border-primary/10">
               <div className="aspect-square bg-rose-50 overflow-hidden mb-6">
-                <img alt="Copywriting" src="https://picsum.photos/seed/diary/600/600" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all" />
+                <img alt="Copywriting" src="https://i.pinimg.com/736x/0c/da/5d/0cda5dfd800186df464653691b5d75a9.jpg" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all" />
               </div>
               <h3 className="font-display text-3xl text-[#1d1d1b] text-left">Copywriting</h3>
             </div>
@@ -104,7 +104,7 @@ const Home: React.FC = () => {
             
             <div className="bg-[#fdfbf7] p-5 pb-12 polaroid-shadow">
               <div className="aspect-square bg-emerald-50 overflow-hidden mb-6">
-                <img alt="Web Design" src="https://picsum.photos/seed/webd/600/600" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all" />
+                <img alt="Web Design" src="https://i.pinimg.com/736x/2b/7a/7a/2b7a7a805016be51897914f59db95a4b.jpg" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all" />
               </div>
               <h3 className="font-display text-3xl text-[#1d1d1b] text-left">Web Design</h3>
             </div>
