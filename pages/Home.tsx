@@ -55,7 +55,7 @@ const Home: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start max-w-5xl mx-auto">
           {/* Marketing Card */}
-          <div className="group relative transform -rotate-2 hover:rotate-0 transition-all duration-500 cursor-default">
+          <Link to="/marketing" className="group relative transform -rotate-2 hover:rotate-0 transition-all duration-500">
             <div className="absolute -top-4 left-4 w-24 h-8 bg-[#E5989B]/90 -rotate-3 z-20 shadow-sm border-x border-white/10" 
                  style={{ clipPath: 'polygon(2% 0%, 98% 2%, 100% 98%, 0% 100%)' }}></div>
             
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
               </div>
               <h3 className="font-display text-2xl text-[#1d1d1b] text-left">Marketing</h3>
             </div>
-          </div>
+          </Link>
 
           {/* Copywriting Card */}
           <Link to="/diary" className="group relative transform rotate-3 hover:rotate-0 transition-all duration-500 md:-mt-6">

@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import DiaryCollection from './pages/DiaryCollection';
 import WebDesignCollection from './pages/WebDesignCollection';
+import MarketingCollection from './pages/MarketingCollection';
 import ProjectDetail from './pages/ProjectDetail';
 
 const Header: React.FC = () => {
@@ -29,6 +30,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/diary" element={<DiaryCollection />} />
           <Route path="/web-design" element={<WebDesignCollection />} />
+          <Route path="/marketing" element={<MarketingCollection />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
         </Routes>
       </div>
