@@ -251,18 +251,20 @@ const ProjectDetail: React.FC = () => {
     );
   }
 
-  // Web Card 6 - Wellness Dashboard
+  // Web Card 6 - Floof app
   if (id === 'web-06') {
+    const floofProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FIFBUa5WoXgK4BM4MEQrW7s%2FFloof-App%3Fnode-id%3D34-2904%26starting-point-node-id%3D34%253A2904";
     return (
       <PageWrapper>
         <ProjectCard 
-          title="Wellness Dashboard: branding & design case study" 
-          image="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=80"
+          title="Floof: App Design Case Study" 
+          iframeSrc={floofProtoUrl}
           isWeb={true}
-          footerLabel="Product Design + SaaS"
+          footerLabel="app design | mock project"
         >
-          <p>A comprehensive SaaS platform for holistic health practitioners. The design focuses on high-density data visualization that remains approachable and calming.</p>
-          <p>Strategic use of muted earth tones and soft iconography helps practitioners manage complex patient data without the clinical coldness of traditional EHR systems.</p>
+          <p>The Floof brand identity leans fully into joy and approachability with playful bubble lettering, soft pastel backgrounds, and charming illustrated mascots. Each screen features adorable cartoon dogs and cats that convey warmth and personality, immediately signaling this isn't a sterile municipal adoption database, it's a community-driven platform that celebrates the emotional bond between pets and owners. The illustrated aesthetic makes pet adoption feel less intimidating and more like joining a loving ecosystem.</p>
+          <p>The app architecture combines adoption discovery with comprehensive pet services, acknowledging that pet ownership is ongoing care, not just a single transaction. The "Find Your Furever Friend" interface uses visual-first pet cards with photos and key details (breed, age, gender, temperament), making browsing feel natural and delightful. The services section intelligently organizes offerings by category, bathing, grooming, dental, veterinary, with transparent pricing that builds trust. The friends list feature with real pet profiles creates social proof and community connection.</p>
+          <p>Design decisions prioritize emotional engagement over clinical efficiency. Rounded corners, generous padding, and whimsical illustrations throughout maintain a consistent tone that reduces anxiety around pet adoption decisions. The bottom navigation keeps core functions (Home, Apps, Favorites, Messages, Profile) accessible, while the onboarding flow with illustrated mascots sets expectations for a friendly, supportive experience. Floof successfully positions pet adoption as the beginning of a joyful journey rather than a transactional necessity.</p>
         </ProjectCard>
       </PageWrapper>
     );

@@ -40,9 +40,9 @@ const WebDesignCollection: React.FC = () => {
     },
     {
       id: 'web-06',
-      title: 'Wellness Dashboard',
-      img: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=80',
-      tag: 'branding & web design | startup',
+      title: 'Floof app',
+      img: 'https://i.imgur.com/tm8zwQ0.png',
+      tag: 'app design | mock project',
       rot: 'rotate-1'
     }
   ];
