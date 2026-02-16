@@ -106,15 +106,19 @@ const ProjectDetail: React.FC = () => {
   const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <main className={`relative min-h-screen pt-32 pb-24 flex flex-col items-center animate-fade-in overflow-hidden bg-site-bg`}>
       <StarField />
+      
+      {/* Fixed Back Button - Smaller and accessible from any scroll position */}
+      <Link 
+        to={isWebDesignProject ? "/web-design" : "/diary"} 
+        className="fixed top-24 left-8 z-[60] group flex items-center font-display hover:opacity-70 transition-opacity text-primary bg-site-bg/40 backdrop-blur-sm p-2 rounded-sm"
+      >
+        <span className="material-symbols-outlined text-base mr-2">arrow_back</span>
+        <span className="uppercase tracking-[0.2em] text-[10px] font-bold border-b border-primary/30 pb-0.5 group-hover:border-primary transition-all">
+          Back to {isWebDesignProject ? "Projects" : "Collection"}
+        </span>
+      </Link>
+
       <div className="max-w-6xl w-full px-12 z-10">
-        <Link 
-          to={isWebDesignProject ? "/web-design" : "/diary"} 
-          className={`group inline-flex items-center font-display mt-12 mb-20 hover:opacity-70 transition-opacity text-primary`}
-        >
-          <span className={`uppercase tracking-[0.4em] text-[15px] font-bold border-b-2 pb-2 border-primary`}>
-            Back to {isWebDesignProject ? "Projects" : "Collection"}
-          </span>
-        </Link>
         <div className="flex flex-col items-start gap-8 py-12">
           {children}
         </div>

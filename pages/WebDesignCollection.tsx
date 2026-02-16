@@ -143,22 +143,6 @@ const WebDesignCollection: React.FC = () => {
         </div>
       </section>
 
-      {/* SERVICES - Scrapbook Style */}
-      <section className="max-w-[1440px] mx-auto px-12 py-24 border-t border-white/5 mt-12">
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-            {[
-              { title: 'Responsive Design', desc: 'Websites that breathe and adapt to every screen they inhabit.' },
-              { title: 'Digital Branding', desc: 'Crafting the visual language of your brand in the online world.' },
-              { title: 'User Experience', desc: 'Mapping intuitive journeys that feel natural and effortless.' }
-            ].map((s, idx) => (
-              <div key={idx} className="text-center group">
-                <h3 className="font-script text-primary text-4xl mb-2">{s.title}</h3>
-                <p className="font-display italic text-lg text-serif-text/60 leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-         </div>
-      </section>
-
       <footer className="py-12 text-center opacity-30">
         <p className="font-display tracking-[0.3em] uppercase text-xs text-serif-text">Miruna Macsim ✦ Web Portfolio 2024</p>
       </footer>
