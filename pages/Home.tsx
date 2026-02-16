@@ -1,19 +1,16 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const StarField: React.FC = () => {
-  // Generate random properties for a denser, more magical star field
   const stars = React.useMemo(() => {
     return Array.from({ length: 40 }).map((_, i) => ({
       id: i,
-      size: Math.random() * 3 + 1, // varied sizes
+      size: Math.random() * 3 + 1,
       top: Math.random() * 100,
       left: Math.random() * 100,
       duration: Math.random() * 20 + 10,
       delay: Math.random() * -30,
       opacity: Math.random() * 0.3 + 0.1,
-      // Add a slight shimmer/twinkle effect by varying box-shadow or scale
       blur: Math.random() * 2,
     }));
   }, []);
@@ -44,10 +41,7 @@ const StarField: React.FC = () => {
 const Home: React.FC = () => {
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden">
-      {/* Base radial gradient background */}
       <div className="fixed inset-0 star-bg pointer-events-none"></div>
-      
-      {/* Enhanced Animated Floating Stars */}
       <StarField />
       
       <div className="max-w-[1440px] w-full px-12 z-10 text-center animate-fade-in">
@@ -62,7 +56,6 @@ const Home: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 items-start max-w-6xl mx-auto">
           {/* Marketing Card */}
           <div className="group relative transform -rotate-2 hover:rotate-0 transition-all duration-500 cursor-default">
-            {/* Washi Tape 1 */}
             <div className="absolute -top-5 left-4 w-32 h-10 bg-[#E5989B]/90 -rotate-3 z-20 shadow-sm border-x border-white/10" 
                  style={{ clipPath: 'polygon(2% 0%, 98% 2%, 100% 98%, 0% 100%)' }}></div>
             
@@ -76,7 +69,6 @@ const Home: React.FC = () => {
 
           {/* Copywriting Card */}
           <Link to="/diary" className="group relative transform rotate-3 hover:rotate-0 transition-all duration-500 md:-mt-10">
-            {/* Washi Tape 2 */}
             <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-36 h-12 bg-[#FAD2E1] rotate-[-2deg] z-20 shadow-sm border-x border-white/20 flex items-center justify-center overflow-hidden"
                  style={{ clipPath: 'polygon(0% 5%, 100% 0%, 98% 95%, 2% 100%)' }}>
               <div className="flex gap-2 opacity-40">
@@ -93,8 +85,7 @@ const Home: React.FC = () => {
           </Link>
 
           {/* Web Design Card */}
-          <div className="group relative transform -rotate-1 hover:rotate-0 transition-all duration-500 cursor-default">
-            {/* Washi Tape 3 */}
+          <Link to="/web-design" className="group relative transform -rotate-1 hover:rotate-0 transition-all duration-500">
             <div className="absolute -top-6 right-6 w-32 h-11 rotate-6 z-20 shadow-sm border-x border-white/10"
                  style={{ 
                    background: 'repeating-linear-gradient(90deg, #FFB5A7, #FFB5A7 10px, #fec5bb 10px, #fec5bb 20px)',
@@ -108,7 +99,7 @@ const Home: React.FC = () => {
               </div>
               <h3 className="font-display text-3xl text-[#1d1d1b] text-left">Web Design</h3>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </main>
