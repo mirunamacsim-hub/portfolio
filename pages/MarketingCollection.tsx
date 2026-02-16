@@ -130,8 +130,8 @@ const MarketingCollection: React.FC = () => {
     <div className="bg-site-bg min-h-screen pt-32 animate-fade-in overflow-x-hidden">
       {/* BACK BUTTON */}
       <div className="max-w-6xl mx-auto px-12 pb-8">
-        <Link to="/" className="inline-flex items-center gap-2 group text-serif-text/40 hover:text-primary transition-colors">
-          <span className="font-display text-[10px] uppercase tracking-widest">Back</span>
+        <Link to="/" className="inline-flex items-center group text-serif-text/40 hover:text-primary transition-colors">
+          <span className="font-display text-[10px] uppercase tracking-widest font-bold">BACK</span>
         </Link>
       </div>
 

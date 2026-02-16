@@ -39,8 +39,8 @@ const DiaryCollection: React.FC = () => {
     <div className="bg-site-bg min-h-screen pt-16 animate-fade-in">
       {/* BACK BUTTON */}
       <div className="max-w-[1440px] mx-auto px-12 pt-8">
-        <Link to="/" className="inline-flex items-center gap-2 group text-serif-text/40 hover:text-primary transition-colors">
-          <span className="font-display text-[10px] uppercase tracking-widest">Back</span>
+        <Link to="/" className="inline-flex items-center group text-serif-text/40 hover:text-primary transition-colors">
+          <span className="font-display text-[10px] uppercase tracking-widest font-bold">BACK</span>
         </Link>
       </div>
 
