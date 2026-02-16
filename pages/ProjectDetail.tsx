@@ -34,6 +34,57 @@ const StarField: React.FC = () => {
   );
 };
 
+interface Article {
+  title: string;
+  image: string;
+  preview: string | React.ReactNode;
+  link?: string;
+  isFullText?: boolean;
+}
+
+const ArticleCard: React.FC<Article> = ({ title, image, preview, link, isFullText = false }) => {
+  const CardContent = (
+    <div className="bg-[#fdf8f1] p-0 polaroid-shadow overflow-hidden flex flex-col md:flex-row h-[320px] w-full border border-black/5 group-hover:border-primary/20 transition-colors">
+      <div className="md:w-[40%] h-full shrink-0 bg-white relative border-r border-black/5 overflow-hidden">
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+        />
+      </div>
+      <div className="md:w-[60%] p-6 text-[#1d1d1b] flex flex-col h-full bg-[#fdf8f1]">
+        <h2 className="font-display text-xl font-bold mb-3 text-primary leading-tight line-clamp-2">{title}</h2>
+        <div className={`flex-grow pr-2 ${isFullText ? 'overflow-y-auto delicate-scrollbar show-scroll-indicator pr-4' : 'overflow-hidden'}`}>
+          <div className={`font-display text-sm leading-relaxed text-slate-800 ${isFullText ? 'space-y-3' : 'line-clamp-[5]'}`}>
+            {preview}
+          </div>
+        </div>
+        {!isFullText && link && (
+          <div className="mt-3 pt-3 border-t border-slate-200">
+             <span className="font-display text-[9px] uppercase tracking-[0.2em] font-bold text-primary/60 group-hover:text-primary transition-colors">
+               Read article →
+             </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  if (link && !isFullText) {
+    return (
+      <a href={link} target="_blank" rel="noopener noreferrer" className="group block w-full transform transition-transform hover:-translate-y-1 duration-500 mb-8 last:mb-0">
+        {CardContent}
+      </a>
+    );
+  }
+
+  return (
+    <div className="group block w-full transform transition-transform hover:-translate-y-1 duration-500 mb-8 last:mb-0">
+      {CardContent}
+    </div>
+  );
+};
+
 const ProjectCard: React.FC<{
   title: string;
   image?: string;
@@ -41,14 +92,12 @@ const ProjectCard: React.FC<{
   link?: string;
   children: React.ReactNode;
   footerLabel?: string;
-  isMedical?: boolean;
-  hideScroll?: boolean;
   isWeb?: boolean;
   isVertical?: boolean;
-}> = ({ title, image, iframeSrc, link, children, footerLabel, isMedical = false, hideScroll = false, isWeb = false, isVertical = false }) => {
+}> = ({ title, image, iframeSrc, link, children, footerLabel, isWeb = false, isVertical = false }) => {
   const Content = (
-    <div className={`bg-[#fdf8f1] p-0 polaroid-shadow overflow-hidden flex flex-col ${isVertical ? '' : 'md:flex-row md:min-h-[650px]'} h-full w-full max-w-5xl ${isWeb ? 'border-2 border-primary/20' : ''}`}>
-      <div className={`${isVertical ? 'w-full h-[600px]' : 'md:w-[35%] h-[450px] md:h-auto md:border-r'} overflow-hidden border-b border-black/5 shrink-0 bg-white relative`}>
+    <div className={`bg-[#fdf8f1] p-0 polaroid-shadow overflow-hidden flex flex-col ${isVertical ? '' : 'md:flex-row md:min-h-[500px]'} h-full w-full max-w-4xl ${isWeb ? 'border-2 border-primary/20' : ''}`}>
+      <div className={`${isVertical ? 'w-full h-[500px]' : 'md:w-[40%] h-[350px] md:h-auto md:border-r'} overflow-hidden border-b border-black/5 shrink-0 bg-white relative`}>
         {iframeSrc ? (
           <iframe 
             src={iframeSrc}
@@ -64,17 +113,17 @@ const ProjectCard: React.FC<{
           />
         )}
       </div>
-      <div className={`${isVertical ? 'w-full' : 'md:w-[65%]'} p-10 text-[#1d1d1b] flex flex-col h-full relative bg-[#fdf8f1]`}>
-        <div className={`${hideScroll ? 'overflow-hidden' : 'overflow-y-auto'} pr-4 flex-grow ${isMedical ? 'delicate-scrollbar show-scroll-indicator' : (hideScroll ? '' : 'scrollbar-thin scrollbar-thumb-primary/20')}`}>
-          <h2 className={`font-display text-3xl font-bold mb-6 leading-tight ${isWeb ? 'text-primary italic' : 'text-primary'}`}>{title}</h2>
-          <div className="font-display text-base leading-relaxed text-slate-800 space-y-6">
+      <div className={`${isVertical ? 'w-full' : 'md:w-[60%]'} p-8 text-[#1d1d1b] flex flex-col h-full relative bg-[#fdf8f1]`}>
+        <div className="overflow-y-auto pr-4 flex-grow scrollbar-thin scrollbar-thumb-primary/20">
+          <h2 className={`font-display text-2xl font-bold mb-4 leading-tight ${isWeb ? 'text-primary italic' : 'text-primary'}`}>{title}</h2>
+          <div className="font-display text-sm leading-relaxed text-slate-800 space-y-4">
             {children}
           </div>
         </div>
         
         {footerLabel && (
-          <div className="mt-8 pt-4 border-t border-slate-200 shrink-0">
-            <span className={`font-display text-[11px] uppercase tracking-[0.25em] font-bold text-primary`}>
+          <div className="mt-6 pt-3 border-t border-slate-200 shrink-0">
+            <span className={`font-display text-[10px] uppercase tracking-[0.25em] font-bold text-primary`}>
               {footerLabel}
             </span>
           </div>
@@ -85,14 +134,14 @@ const ProjectCard: React.FC<{
 
   if (link) {
     return (
-      <a href={link} target="_blank" rel="noopener noreferrer" className="group block w-full max-w-5xl transform transition-transform hover:-translate-y-2 duration-500 mb-12">
+      <a href={link} target="_blank" rel="noopener noreferrer" className="group block w-full max-w-4xl transform transition-transform hover:-translate-y-2 duration-500 mb-10">
         {Content}
       </a>
     );
   }
 
   return (
-    <div className="group block w-full max-w-5xl transform transition-transform hover:-translate-y-2 duration-500 mb-12">
+    <div className="group block w-full max-w-4xl transform transition-transform hover:-translate-y-2 duration-500 mb-10">
       {Content}
     </div>
   );
@@ -100,189 +149,224 @@ const ProjectCard: React.FC<{
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams();
-
   const isWebDesignProject = id && id.startsWith('web-');
 
-  const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <main className={`relative min-h-screen pt-32 pb-24 flex flex-col items-center animate-fade-in overflow-hidden bg-site-bg`}>
+  const PageWrapper: React.FC<{ children: React.ReactNode; categoryTitle?: string }> = ({ children, categoryTitle }) => (
+    <main className="relative min-h-screen pt-32 pb-24 flex flex-col items-center animate-fade-in overflow-hidden bg-site-bg">
       <StarField />
       
-      {/* Fixed Back Button - Smaller and accessible from any scroll position */}
-      <Link 
-        to={isWebDesignProject ? "/web-design" : "/diary"} 
-        className="fixed top-24 left-8 z-[60] group flex items-center font-display hover:opacity-70 transition-opacity text-primary bg-site-bg/40 backdrop-blur-sm p-2 rounded-sm"
-      >
-        <span className="material-symbols-outlined text-base mr-2">arrow_back</span>
-        <span className="uppercase tracking-[0.2em] text-[10px] font-bold border-b border-primary/30 pb-0.5 group-hover:border-primary transition-all">
-          Back to {isWebDesignProject ? "Projects" : "Collection"}
-        </span>
-      </Link>
+      {/* Navigation button removed as requested */}
 
-      <div className="max-w-6xl w-full px-12 z-10">
-        <div className="flex flex-col items-start gap-8 py-12">
-          {children}
-        </div>
+      <div className="max-w-3xl w-full px-8 z-10 flex flex-col items-center">
+        {categoryTitle && (
+          <div className="text-center mb-12">
+            <h1 className="font-display text-3xl text-serif-text uppercase tracking-[0.2em] mb-2">{categoryTitle}</h1>
+            <div className="h-px w-16 bg-primary mx-auto"></div>
+          </div>
+        )}
+        {children}
       </div>
     </main>
   );
 
-  // Web Design Projects
-  if (id === 'web-01') {
-    const figmaProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FEIfYUAE7nlZ829vCnl90ou%2FThe-Orange-Bus%3Fnode-id%3D2008-31%26p%3Df%26t%3DDG0dKOKq1T43aHDe-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D2008%253A31";
-
-    return (
-      <PageWrapper>
-        <ProjectCard 
-          title="The Orange Bus: branding & web design case study" 
-          iframeSrc={figmaProtoUrl}
-          isWeb={true}
-        >
-          <p>
-            The Orange Bus brand identity blends vintage VW nostalgia with contemporary design through a warm color palette of oranges, creams, and browns pulled from classic 1970s buses. Clean typography and sun-drenched lifestyle photography position the service as a premium experience rather than a commodity, while playful retro touches keep the brand approachable and fun.
-          </p>
-          <p>
-            The website prioritizes visual storytelling with large, immersive imagery and a streamlined booking flow—view packages, check availability, book. Subtle design elements like rounded corners and warm gradients maintain the vintage aesthetic while modern UX patterns ensure the experience feels professional and intuitive across all devices.
-          </p>
-          <p>
-            The result is a cohesive digital presence that extends the brand experience beyond the physical bus, making the booking process as memorable as the photo booth itself.
-          </p>
-          <div className="pt-4">
-            <a 
-              href="https://cabinefoto.ro/bw-photo-bus/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-display italic text-primary font-bold border-b border-primary/30 pb-1 hover:border-primary transition-all"
-            >
-              View the "Before" Concept
-            </a>
-          </div>
-        </ProjectCard>
-      </PageWrapper>
-    );
-  }
-
-  // Web Card 2 - Wedding Planning App
-  if (id === 'web-02' || id === '02') {
-    const weddingProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fih3rrMTYpGnqafRzKe3iKc%2FWedding-Planning-App---in-progress%3Fnode-id%3D3-2939%26t%3DwdngUEpYaCjXqU77-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D3%253A2939";
-
-    return (
-      <PageWrapper>
-        <ProjectCard 
-          title="Wedding Planning App: branding & design case study" 
-          iframeSrc={weddingProtoUrl}
-          isWeb={true}
-        >
-          <p>
-            The app's visual system balances wedding industry elegance with clean usability. A soft blush background provides warmth without overwhelming, while rounded cards and gentle shadows create hierarchy. The design smartly integrates planning tools (colorful, illustrated cards for checklists and budget tracking) directly alongside vendor browsing, acknowledging that couples need both inspiration and organization in one place. Star ratings and high-quality vendor photography establish immediate credibility.
-          </p>
-          <p>
-            The interface prioritizes scannable vendor discovery with image-led cards that communicate style and quality at a glance. Each category (flower shops, photographers, venues) uses consistent layouts with prominent imagery, vendor names, and ratings, allowing quick comparison. The photographer profiles intelligently include portfolio snippets and direct contact actions, reducing friction between discovery and outreach. A persistent bottom navigation keeps core functions (Home, Explore, Checklist, Sharing, Profile) always accessible.
-          </p>
-          <p>
-            The integrated checklist feature demonstrates thoughtful UX that respects the wedding planning timeline. Tasks are organized by timeframe (12+ months, 9 months, 6-8 months, etc.) with clear checkboxes, turning an overwhelming to-do list into manageable phases. By combining vendor marketplace, planning tools, and progress tracking in one cohesive experience, the app becomes a daily companion rather than just a directory, reducing app-switching and keeping couples focused on their vision.
-          </p>
-        </ProjectCard>
-      </PageWrapper>
-    );
-  }
-
-  // Web Card 3 - Digest - a The Publics product
-  if (id === 'web-03') {
-    const platformProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FeZ8mYj8ZG62Hfl9EOxfrgJ%2FUntitled%3Fnode-id%3D1-111%26t%3DwdngUEpYaCjXqU77-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D1%3A111";
-
-    return (
-      <PageWrapper>
-        <ProjectCard 
-          title="Digest - a The Publics product: branding & design case study" 
-          iframeSrc={platformProtoUrl}
-          isWeb={true}
-        >
-          <p>
-            The platform's dark teal interface and vibrant gradient cards visually communicate its core mission: bridging text-based data systems with GenAI's multimodal capabilities. Each gradient represents transformation across formats, positioning the tool as built for the AI era rather than retrofitted from legacy systems.
-          </p>
-          <p>
-            The interface prioritizes discovery over search, using familiar metaphors like bookshelves and libraries to make AI-powered curation feel intuitive. Curated collections ("Trending community bookshelves," "Top picks for you") surface content through algorithmic recommendations rather than manual filtering, allowing users to scan across text, visual, and conceptual dimensions simultaneously.
-          </p>
-          <p>
-            Strategic UX decisions hide technical complexity behind approachable patterns. By designing for synthesis rather than retrieval, the platform aligns with how creative collaborators actually work: gathering inspiration across formats and remixing ideas, exactly what GenAI excels at, now with a human-centered interface.
-          </p>
-        </ProjectCard>
-      </PageWrapper>
-    );
-  }
-
-  // Web Card 4 - Invictus Labs
-  if (id === 'web-04') {
-    const invictusProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fnv9egUKEFUQabduVgBjc0U%2FInvictus-Labs-Landing-Page%3Fnode-id%3D212-6%26t%3DkVOTl4l1RjE2x8Ze-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1";
-
-    return (
-      <PageWrapper>
-        <ProjectCard 
-          title="Invictus Labs: branding & design case study" 
-          iframeSrc={invictusProtoUrl}
-          isWeb={true}
-        >
-          <p>
-            The visual identity positions Invictus Labs as a credible technical solution in the Web3 space. A deep navy backdrop with molecular and network imagery establishes scientific rigor, while bright cyan accents provide energy without crypto hype. The design borrows from biotech and data visualization—DNA helixes, network graphs—to ground abstract DeFi concepts in tangible, trustworthy frameworks.
-          </p>
-          <p>
-            The landing page follows a problem-solution-methodology flow with Web3-native sophistication. Iconographic cards quickly communicate pain points, while data visualizations demonstrate analytical depth. Strategic whitespace and modular sections create digestibility for complex topics, serving both technical and general audiences.
-          </p>
-          <p>
-            Design decisions prioritize legitimacy in an industry plagued by opacity. Network logos and investor badges leverage social proof, while "Learn More" CTAs suggest confidence over urgency. The molecular metaphor for "Modeling the DNA of Web3 Lending" frames their quantitative approach as fundamental science rather than financial speculation—appealing to serious DeFi participants while remaining accessible to newcomers.
-          </p>
-        </ProjectCard>
-      </PageWrapper>
-    );
-  }
-
-  // Web Card 5 - witchy brew
-  if (id === 'web-05') {
-    return (
-      <PageWrapper>
-        <ProjectCard 
-          title="witchy brew: logo design case study" 
-          image="https://i.imgur.com/nlF8Sqi.png"
-          isWeb={true}
-          isVertical={true}
-          footerLabel="logo design | mock project"
-        >
-          <p>The Witchy Brew identity playfully merges occult aesthetics with coffee culture through a whimsical illustration of a witch's boot stirring a steaming cup. The logo exists in two colorways, a moody dark version with cream illustration and a soft pink variant with purple accents, allowing flexibility across applications while maintaining brand recognition. The hand-drawn quality of the steam and boot creates approachability, preventing the witchy theme from feeling too dark or exclusive.</p>
-          <p>Typography balances the playful concept with sophistication. The serif wordmark "witchy brew" uses elegant, slightly condensed letterforms that nod to apothecary-style branding without becoming overly mystical or illegible. The tagline "coffee, roastery & more" in clean sans-serif grounds the brand in its actual offering, ensuring customers understand this is a legitimate coffee business first, themed experience second.</p>
-          <p>The dual colorway strategy demonstrates smart brand positioning. The dark version works for moody café interiors, packaging, and nighttime events, while the pink version appeals to a broader, Instagram-friendly audience and daytime retail contexts. This versatility allows Witchy Brew to attract both alternative culture enthusiasts and mainstream coffee lovers seeking something more memorable than generic café branding.</p>
-        </ProjectCard>
-      </PageWrapper>
-    );
-  }
-
-  // Web Card 6 - Floof app
-  if (id === 'web-06') {
-    const floofProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FIFBUa5WoXgK4BM4MEQrW7s%2FFloof-App%3Fnode-id%3D34-2904%26starting-point-node-id%3D34%253A2904";
-    return (
-      <PageWrapper>
-        <ProjectCard 
-          title="Floof: App Design Case Study" 
-          iframeSrc={floofProtoUrl}
-          isWeb={true}
-          footerLabel="app design | mock project"
-        >
-          <p>The Floof brand identity leans fully into joy and approachability with playful bubble lettering, soft pastel backgrounds, and charming illustrated mascots. Each screen features adorable cartoon dogs and cats that convey warmth and personality, immediately signaling this isn't a sterile municipal adoption database, it's a community-driven platform that celebrates the emotional bond between pets and owners. The illustrated aesthetic makes pet adoption feel less intimidating and more like joining a loving ecosystem.</p>
-          <p>The app architecture combines adoption discovery with comprehensive pet services, acknowledging that pet ownership is ongoing care, not just a single transaction. The "Find Your Furever Friend" interface uses visual-first pet cards with photos and key details (breed, age, gender, temperament), making browsing feel natural and delightful. The services section intelligently organizes offerings by category, bathing, grooming, dental, veterinary, with transparent pricing that builds trust. The friends list feature with real pet profiles creates social proof and community connection.</p>
-          <p>Design decisions prioritize emotional engagement over clinical efficiency. Rounded corners, generous padding, and whimsical illustrations throughout maintain a consistent tone that reduces anxiety around pet adoption decisions. The bottom navigation keeps core functions (Home, Apps, Favorites, Messages, Profile) accessible, while the onboarding flow with illustrated mascots sets expectations for a friendly, supportive experience. Floof successfully positions pet adoption as the beginning of a joyful journey rather than a transactional necessity.</p>
-        </ProjectCard>
-      </PageWrapper>
-    );
-  }
-
-  // Legacy IDs
+  // --- Real Estate (01) ---
   if (id === '01') {
     return (
-      <PageWrapper>
-        <ProjectCard title="Real Estate Archive" image="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" link="https://www.brixleyapartments.com/" footerLabel="Visit Website">
-          <p>Luxury residential development in Florida. The design emphasizes modern aesthetics and community ease of navigation.</p>
-        </ProjectCard>
+      <PageWrapper categoryTitle="Real Estate">
+        <ArticleCard 
+          title="Brixley Apartments"
+          image="https://capi.myleasestar.com/v2/dimg/145070051/1536x695/145070051.jpg"
+          link="https://www.brixleyapartments.com/"
+          preview="Welcome to Brixley Apartments in Bradenton, Florida—a place where luxury meets convenience in a stunning new residential development. Wrapped in the warmth of the Florida sun and surrounded by meticulously landscaped gardens, our apartments offer a first-class living experience. At Brixley Apartments, every day is infused with a touch of luxury, from the modern architectural designs to the high-end amenities tailored for comfort and style."
+        />
       </PageWrapper>
     );
+  }
+
+  // --- Medical (02) ---
+  if (id === '02') {
+    return (
+      <PageWrapper categoryTitle="Medical">
+        <ArticleCard 
+          isFullText={true}
+          title="Gastroesophageal reflux disease (GERD)"
+          image="https://i.pinimg.com/1200x/b0/42/58/b04258d61b50af98e14e5242dde3ca0f.jpg"
+          preview={
+            <>
+              <p>Gastroesophageal reflux disease (GERD) is a common condition characterized by the reflux of gastric food contents back into the esophagus. Reflux can cause damage not only to the esophagus but also to the pharynx or upper respiratory tract.</p>
+              <h3 className="font-bold text-base mt-4">Causes</h3>
+              <p>Disruption of the lower esophageal sphincter path can result in reflux. Hiatal hernias also contribute by allowing abdominal organs to slide through the diaphragm.</p>
+              <h3 className="font-bold text-base mt-4">Symptoms</h3>
+              <p>Main symptom is heartburn, a burning sensation in the chest and regurgitation of sour fluid.</p>
+              <h3 className="font-bold text-base mt-4">Treatment</h3>
+              <p>Lifestyle changes (smoking cessation, weight loss) and medical treatment (antiacids) are primary. Surgical options like fundoplication exist for persistent cases.</p>
+            </>
+          }
+        />
+        <ArticleCard 
+          isFullText={true}
+          title="The Ultimate 6 Food Industry Trends in 2022"
+          image="https://i.pinimg.com/1200x/b7/53/c6/b753c6a3f341b26be2ea5c7364104fb5.jpg"
+          preview={
+            <>
+              <p>COVID-19 precipitated shifts in consumer behavior that remain today, with 85% of Americans making changes in their eating habits during the pandemic.</p>
+              <h3 className="font-bold text-base">1. Reducetarianism</h3>
+              <p>Alternatives like lentils and soy milk offer an easy way to cut back on meat and dairy without noticing it too much.</p>
+              <h3 className="font-bold text-base">2. CBD Trend</h3>
+              <p>A multibillion-dollar sector that continues to grow as one of the most studied natural remedies in the world.</p>
+              <h3 className="font-bold text-base">3. Plant-based diet</h3>
+              <p>Focuses on foods primarily from plants: fruits, vegetables, nuts, whole grains, and beans.</p>
+            </>
+          }
+        />
+      </PageWrapper>
+    );
+  }
+
+  // --- Lifestyle (03) ---
+  if (id === '03') {
+    return (
+      <PageWrapper categoryTitle="Lifestyle">
+        <ArticleCard 
+          title="5 Ideas to Start Your Personal Development Journey"
+          image="https://i.pinimg.com/736x/35/5a/91/355a91965bc951fca77a4ce0154b9a3b.jpg"
+          link="https://inspirenow.ro/2021/08/20/5-idei-pentru-a-incepe-procesul-de-dezvoltare-personala/"
+          preview="While Netflix & Chill sounds appealing, especially as a student with free time, will it truly benefit you to spend all your time watching shows? Instead, try activities that will benefit your future while still keeping up with the latest films."
+        />
+        <ArticleCard 
+          title="Discovering Inner Peace"
+          image="https://i.pinimg.com/736x/a4/51/90/a4519025b891314b3ac33eb263b461ee.jpg"
+          link="https://inspirenow.ro/2020/12/21/descopera-linistea-interioara/"
+          preview="Meditation is a mental exercise that trains attention and the ability to anchor oneself in the present. Its purpose is to find a balance between the emotions and thoughts that arise in daily life."
+        />
+        <ArticleCard 
+          title="5 Ways to Build Self-Confidence"
+          image="https://i.pinimg.com/736x/1d/12/2b/1d122b670fddba98689e5e17c900e7c3.jpg"
+          link="https://inspirenow.ro/2021/11/03/5-metode-care-te-vor-ajuta-sa-iti-construiesti-increderea-in-tine/"
+          preview="It's easy to think everyone around you knows exactly what they're doing and feels very confident, but rest assured, that's far from the truth."
+        />
+        <ArticleCard 
+          title="How to Overcome Procrastination?"
+          image="https://i.pinimg.com/736x/46/0e/31/460e3173bb13f5c25736ecabd178d0f6.jpg"
+          link="https://inspirenow.ro/2021/03/04/cum-sa-invingi-procrastinarea/"
+          preview="After careful consideration, I’ve resolved that my goal for this year is to develop both personally and professionally, sharing ideas, information, and my experiences."
+        />
+      </PageWrapper>
+    );
+  }
+
+  // --- Creative Non-Fiction (04) ---
+  if (id === '04') {
+    return (
+      <PageWrapper categoryTitle="Creative Non-Fiction">
+        {[
+          { title: "i tried to talk to myself this morning", link: "https://substack.com/@mirunaaaa/p-174419877", preview: "the season shift brought with it an amalgam of feelings. some days i am in awe of the natural beauty that surrounds me — the colors, the textures.", img: "https://substackcdn.com/image/fetch/$s_!d9ar!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F27430fee-7417-435a-8d6d-0874082204f9_970x508.jpeg" },
+          { title: "6 brutal ways the wrong partner poisons your body and mind", link: "https://substack.com/@mirunaaaa/p-173924357", preview: "six years in a relationship that looked ordinary from the outside left me with a body i didn’t recognize, a mind that betrayed me.", img: "https://substackcdn.com/image/fetch/$s_!5hoV!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4f217406-c949-4af0-b3c3-543db3c0c666_736x385.jpeg" },
+          { title: "you're too narcissistic to change yourself", link: "https://substack.com/@mirunaaaa/p-172883900", preview: "growing up, love was never soft. it was sharp, manipulative, something dangled in front of me like a prize i had to earn.", img: "https://substackcdn.com/image/fetch/$s_!FNnM!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa148e774-77a3-4b53-8cfa-d3807e190148_654x342.jpeg" },
+          { title: "your content is ruining my fall aesthetic!", link: "https://substack.com/@mirunaaaa/p-172777997", preview: "there’s something incredibly nostalgic about the start of the fall season. not even a week in and my thoughts — and feed — are crowded.", img: "https://substackcdn.com/image/fetch/$s_!4ekR!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff66cbca5-6bac-49e2-912f-d2b640e938c2_1200x675.jpeg" },
+          { title: "I hate myself for still missing you", link: "https://substack.com/@mirunaaaa/p-171872857", preview: "5 nights of silence and it feels like I’ve been left for dead. the truth is, the ache set it mere hours after the last words. I’d grown addicted to the way you filled my mornings, to the tiny pulse of your messages keeping me alive.", img: "https://substackcdn.com/image/fetch/$s_!6ZrR!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F541c0abd-ebdf-4813-b3f8-f80ed1fb5237_511x383.jpeg" },
+          { title: "la vie en totally broke", link: "https://substack.com/@mirunaaaa/p-171551237", preview: "This particular tale began, as many great tragedies do, with ambition, a modest salary, and the unmistakable scent of chocolate buttercream.", img: "https://substackcdn.com/image/fetch/$s_!Eaui!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1e6c0e44-471f-4fce-a420-6fd2cdc7a65e_736x493.jpeg" },
+          { title: "the struggle of comparison", link: "https://substack.com/@mirunaaaa/p-171351771", preview: "my entire life i’ve felt like i’m floating. no direction, no purpose, no map, just drifting in my own little bubble of chaos.", img: "https://substackcdn.com/image/fetch/$s_!W8uw!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcf778a25-c967-4b3d-90b5-3d7a1b432407_736x487.jpeg" },
+          { title: "courted, confused, and perpetually amused", link: "https://substack.com/@mirunaaaa/p-171255183", preview: "It began, as most stories do, with good intentions, a desire for a fun time, and very short shorts. A gentleman caller I had the pleasure of meeting at a ball two days prior appeared into my inbox.", img: "https://substackcdn.com/image/fetch/$s_!K2Bv!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb0401be4-bc04-4551-8c47-b769ac856d6b_736x608.jpeg" },
+
+        ].map((item, idx) => (
+          <ArticleCard key={idx} title={item.title} image={item.img} link={item.link} preview={item.preview} />
+        ))}
+      </PageWrapper>
+    );
+  }
+
+  // --- Interviews (05) ---
+  if (id === '05') {
+    return (
+      <PageWrapper categoryTitle="Interviews">
+        <ArticleCard 
+          title="Figeac is not just as a vineyard, but a legacy in every bottle"
+          image="https://i.pinimg.com/736x/b0/c4/e1/b0c4e1b8f501dc878523460422dcc6ab.jpg"
+          link="https://business-review.eu/profiles1/interviews-interviews/blandine-de-brier-manoncourt-co-owner-of-chateau-figeac-figeac-is-not-just-as-a-vineyard-but-a-legacy-in-every-bottle-254895"
+          preview="Blandine de Brier Manoncourt, co-owner of Château-Figeac, delved into the nuances and challenges of the wine industry while exploring unique qualities."
+        />
+        <ArticleCard 
+          title="Behind Stefanini EMEA Success: Marco Stefanini and Farlei Kothe"
+          image="https://media.business-review.eu/unsafe/420x250/smart/filters:contrast(5):quality(80)/business-review.eu/wp-content/uploads/2023/10/Screenshot-2023-10-20-at-11.00.13-AM.png"
+          link="https://business-review.eu/profiles1/interviews-interviews/stefaninis-growth-and-innovation-an-insiders-view-with-marco-stefanini-and-farlei-kothe-252896"
+          preview="Marco Stefanini and Farlei Kothe shared their insights on digital transformation, starting a business at a young age, and Stefanini’s evolution."
+        />
+         <ArticleCard 
+          title="Shaping the Future of Work: Bruno Szarf and Andreea Miron on Stefanini’s Talent Strategy in Romania"
+          image="https://i.pinimg.com/736x/e4/92/e2/e492e220e29851b54d39b03aad133605.jpg"
+          link="https://business-review.eu/profiles1/interviews-interviews/shaping-the-future-of-work-bruno-szarf-and-andreea-miron-on-stefaninis-talent-strategy-in-romania-258067"
+          preview="Bruno Szarf, the newly appointed Global CHRO at Stefanini, alongside Andreea Miron, HR EMEA Director, unveil their strategies for navigating the Romanian recruitment landscape. Together, they shed light on Stefanini’s unique approach to talent investment and development, the challenges and opportunities on the horizon, and the innovative programs in place to nurture the company’s workforce."
+        />
+      </PageWrapper>
+    );
+  }
+
+  // Web Design Projects
+  if (id?.startsWith('web-')) {
+    if (id === 'web-01') {
+      const figmaProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FEIfYUAE7nlZ829vCnl90ou%2FThe-Orange-Bus%3Fnode-id%3D2008-31%26p%3Df%26t%3DDG0dKOKq1T43aHDe-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D2008%253A31";
+      return (
+        <PageWrapper>
+          <ProjectCard title="The Orange Bus: branding & web design" iframeSrc={figmaProtoUrl} isWeb={true}>
+            <p>The Orange Bus brand identity blends vintage VW nostalgia with contemporary design. The result is a cohesive digital presence that extends the brand experience beyond the physical bus.</p>
+          </ProjectCard>
+        </PageWrapper>
+      );
+    }
+    if (id === 'web-02') {
+        const weddingProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fih3rrMTYpGnqafRzKe3iKc%2FWedding-Planning-App---in-progress%3Fnode-id%3D3-2939%26t%3DwdngUEpYaCjXqU77-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D3%253A2939";
+        return (
+          <PageWrapper>
+            <ProjectCard title="Wedding Planning App" iframeSrc={weddingProtoUrl} isWeb={true}>
+              <p>The app's visual system balances wedding industry elegance with clean usability. It combines vendor marketplace, planning tools, and progress tracking.</p>
+            </ProjectCard>
+          </PageWrapper>
+        );
+      }
+    
+      if (id === 'web-03') {
+        const platformProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FeZ8mYj8ZG62Hfl9EOxfrgJ%2FUntitled%3Fnode-id%3D1-111%26t%3DwdngUEpYaCjXqU77-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D1%3A111";
+        return (
+          <PageWrapper>
+            <ProjectCard title="Digest - a The Publics product" iframeSrc={platformProtoUrl} isWeb={true}>
+              <p>Bridging text-based data systems with GenAI's multimodal capabilities through a synthesis-focused interface.</p>
+            </ProjectCard>
+          </PageWrapper>
+        );
+      }
+    
+      if (id === 'web-04') {
+        const invictusProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fnv9egUKEFUQabduVgBjc0U%2FInvictus-Labs-Landing-Page%3Fnode-id%3D212-6%26t%3DkVOTl4l1RjE2x8Ze-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1";
+        return (
+          <PageWrapper>
+            <ProjectCard title="Invictus Labs" iframeSrc={invictusProtoUrl} isWeb={true}>
+              <p>Legitimacy and rigorous quantitative modeling for DeFi lending protocols, framed through scientific molecular metaphors.</p>
+            </ProjectCard>
+          </PageWrapper>
+        );
+      }
+    
+      if (id === 'web-05') {
+        return (
+          <PageWrapper>
+            <ProjectCard title="witchy brew" image="https://i.imgur.com/nlF8Sqi.png" isWeb={true} isVertical={true}>
+              <p>Playfully merges occult aesthetics with coffee culture through whimsical illustration and apothecary-inspired typography.</p>
+            </ProjectCard>
+          </PageWrapper>
+        );
+      }
+    
+      if (id === 'web-06') {
+        const floofProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FIFBUa5WoXgK4BM4MEQrW7s%2FFloof-App%3Fnode-id%3D34-2904%26starting-point-node-id%3D34%253A2904";
+        return (
+          <PageWrapper>
+            <ProjectCard title="Floof App" iframeSrc={floofProtoUrl} isWeb={true}>
+              <p>Joyful pet adoption and comprehensive pet services with a community-driven, illustrated ecosystem.</p>
+            </ProjectCard>
+          </PageWrapper>
+        );
+      }
   }
 
   return (

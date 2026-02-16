@@ -11,8 +11,8 @@ const DiaryCollection: React.FC = () => {
     },
     { 
       id: '02', 
-      title: 'Wedding Planning App', 
-      img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80', 
+      title: 'Medical', 
+      img: 'https://i.pinimg.com/736x/d7/03/fa/d703fa10a6e9f36667b30b724c7cac4f.jpg', 
       rot: 'rotate-1' 
     },
     { 
@@ -38,37 +38,38 @@ const DiaryCollection: React.FC = () => {
   return (
     <div className="bg-site-bg min-h-screen pt-16 animate-fade-in">
       {/* POSTCARD SECTION */}
-      <section className="max-w-[1440px] mx-auto px-12 py-6 flex flex-col items-center">
-        {/* Made the container less wide (max-w-5xl) */}
-        <div className="relative w-full max-w-5xl bg-[#fdf8f1] p-1 shadow-2xl transform rotate-[-3deg]">
+      <section className="max-w-[1440px] mx-auto px-12 py-12 flex flex-col items-center">
+        <div className="relative w-full max-w-4xl bg-[#fdf8f1] p-1 shadow-2xl transform rotate-[-2deg]">
           <div className="postcard-border"></div>
-          <div className="relative bg-[#fdf8f1] p-4 md:p-6 flex flex-col md:flex-row min-h-[140px] items-stretch">
-            {/* Left side - Image centered vertically, background removed */}
-            <div className="w-full md:w-1/3 flex items-center justify-center p-4 relative border-b md:border-b-0 md:border-r border-gray-300 overflow-hidden">
-              <img 
-                alt="A piece from the Archives" 
-                src="https://i.imgur.com/0Al4IsT.png" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-          
-            {/* Right side - Text aligned left */}
-            <div className="w-full md:w-2/3 flex flex-col p-0 md:pl-16 justify-between py-1 text-left">
-              {/* Restored left alignment for the title */}
-              <div className="text-left">
-                <h1 className="font-script text-6xl text-primary leading-none">Diary Notes</h1>
+          <div className="relative bg-[#fdf8f1] p-8 md:p-10 flex flex-col md:flex-row min-h-[400px]">
+            {/* Left side: POST Background */}
+            <div className="w-full md:w-1/2 flex items-center justify-center relative border-b md:border-b-0 md:border-r border-gray-300">
+              <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
+                <span className="text-7xl font-display uppercase tracking-[1.5rem] text-[#1d1d1b]">POST</span>
               </div>
               
-              {/* Aligned with Middle of Image */}
-              <div className="text-left py-1">
-                <p className="font-display italic text-4xl text-[#1d1d1b] leading-tight max-w-sm">
+              {/* Updated portrait image with mix-blend-multiply and color preserved */}
+              <img 
+                src="https://i.imgur.com/pUHz06m.png" 
+                alt="Portrait" 
+                className="relative z-10 max-h-[380px] w-auto mix-blend-multiply opacity-100 object-contain"
+              />
+
+              <div className="absolute w-32 h-32 border-2 border-dashed border-gray-300 rounded-full opacity-20"></div>
+            </div>
+            
+            {/* Right side */}
+            <div className="w-full md:w-1/2 flex flex-col p-6 md:pl-10 h-full justify-between">
+              <div className="text-left pt-2">
+                <h1 className="font-script text-5xl text-primary leading-tight">Diary Notes</h1>
+              </div>
+              <div className="text-left py-6">
+                <p className="font-display italic text-3xl text-[#1d1d1b] leading-tight max-w-sm">
                   There is a particular kind of magic in the ink that bleeds...
                 </p>
               </div>
-              
-              {/* Raised slightly from the very bottom */}
-              <div className="text-left">
-                <p className="text-slate-600 font-sans leading-relaxed text-sm max-w-md">
+              <div className="text-left pb-4">
+                <p className="text-slate-600 font-sans leading-relaxed text-xs max-w-md">
                   My personal essays trace the architecture of emotion, gathering the unsaid, the unresolved, and the vulnerable into something tangible. I write to remember what it feels like to be alive.
                 </p>
               </div>
@@ -78,7 +79,7 @@ const DiaryCollection: React.FC = () => {
       </section>
 
       {/* COLLECTION SECTION */}
-      <section className="max-w-[1440px] mx-auto px-6 py-12">
+      <section className="max-w-[1440px] mx-auto px-6 py-24">
         <div className="text-center mb-20">
           <h2 className="font-display text-5xl md:text-7xl mb-4 text-serif-text">The Collection</h2>
           <span className="font-script text-primary text-3xl">curated works & projects</span>
@@ -95,7 +96,7 @@ const DiaryCollection: React.FC = () => {
                   <img 
                     alt={item.title} 
                     src={item.img} 
-                    className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0" 
+                    className="w-full h-full object-cover grayscale opacity-90 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100" 
                   />
                 </div>
                 <div className="px-1 flex-grow">
