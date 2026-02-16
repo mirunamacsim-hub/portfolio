@@ -6,7 +6,7 @@ const DiaryCollection: React.FC = () => {
     { 
       id: '01', 
       title: 'Real Estate', 
-      img: 'https://i.pinimg.com/736x/35/34/42/353442be9f9eae3230eeafd2dfd4fc9c.jpg', 
+      img: 'https://i.pinimg.com/1200x/a6/c2/91/a6c291b9aa480d3b6ceb5395ba37637e.jpg', 
       rot: '-rotate-2' 
     },
     { 
@@ -24,45 +24,50 @@ const DiaryCollection: React.FC = () => {
     { 
       id: '04', 
       title: 'Creative Non-Fiction', 
-      img: 'https://i.pinimg.com/736x/fc/e8/02/fce802de2ef3128b7f7828d888a5d9c5.jpg', 
+      img: 'https://i.pinimg.com/1200x/2b/e4/fb/2be4fb34ddd18b94fbd37471ac089bdc.jpg', 
       rot: 'rotate-2' 
     },
     { 
       id: '05', 
       title: 'Interviews', 
-      img: 'https://i.pinimg.com/736x/93/37/46/9337467a94ff390c5056b268dd5644df.jpg', 
+      img: 'https://i.pinimg.com/736x/9e/9e/33/9e9e332172056d9b149d25a0b28bf351.jpg', 
       rot: '-rotate-1' 
     },
   ];
 
   return (
-    <div className="bg-site-bg min-h-screen pt-32 animate-fade-in">
+    <div className="bg-site-bg min-h-screen pt-16 animate-fade-in">
       {/* POSTCARD SECTION */}
-      <section className="max-w-[1440px] mx-auto px-12 py-12 flex flex-col items-center">
-        <div className="relative w-full max-w-6xl bg-[#fdf8f1] p-1 shadow-2xl transform rotate-[-3deg]">
+      <section className="max-w-[1440px] mx-auto px-12 py-6 flex flex-col items-center">
+        {/* Made the container less wide (max-w-5xl) */}
+        <div className="relative w-full max-w-5xl bg-[#fdf8f1] p-1 shadow-2xl transform rotate-[-3deg]">
           <div className="postcard-border"></div>
-          <div className="relative bg-[#fdf8f1] p-12 md:p-16 flex flex-col md:flex-row min-h-[550px]">
-            {/* Left side: POST Background */}
-            <div className="w-full md:w-1/2 flex items-center justify-center relative border-b md:border-b-0 md:border-r border-gray-300">
-              <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
-                <span className="text-8xl font-display uppercase tracking-[2rem] text-[#1d1d1b]">POST</span>
-              </div>
-              <div className="w-48 h-48 border-2 border-dashed border-gray-300 rounded-full opacity-40"></div>
+          <div className="relative bg-[#fdf8f1] p-4 md:p-6 flex flex-col md:flex-row min-h-[140px] items-stretch">
+            {/* Left side - Image centered vertically, background removed */}
+            <div className="w-full md:w-1/3 flex items-center justify-center p-4 relative border-b md:border-b-0 md:border-r border-gray-300 overflow-hidden">
+              <img 
+                alt="A piece from the Archives" 
+                src="https://i.imgur.com/0Al4IsT.png" 
+                className="w-full h-full object-contain"
+              />
             </div>
-            
-            {/* Right side */}
-            <div className="w-full md:w-1/2 flex flex-col p-8 md:pl-16 h-full justify-between">
-              <div className="text-left pt-2">
-                <h1 className="font-script text-6xl text-primary leading-tight">Diary Notes</h1>
+          
+            {/* Right side - Text aligned left */}
+            <div className="w-full md:w-2/3 flex flex-col p-0 md:pl-16 justify-between py-1 text-left">
+              {/* Restored left alignment for the title */}
+              <div className="text-left">
+                <h1 className="font-script text-6xl text-primary leading-none">Diary Notes</h1>
               </div>
               
-              <div className="text-left py-8">
+              {/* Aligned with Middle of Image */}
+              <div className="text-left py-1">
                 <p className="font-display italic text-4xl text-[#1d1d1b] leading-tight max-w-sm">
                   There is a particular kind of magic in the ink that bleeds...
                 </p>
               </div>
               
-              <div className="text-left pb-4">
+              {/* Raised slightly from the very bottom */}
+              <div className="text-left">
                 <p className="text-slate-600 font-sans leading-relaxed text-sm max-w-md">
                   My personal essays trace the architecture of emotion, gathering the unsaid, the unresolved, and the vulnerable into something tangible. I write to remember what it feels like to be alive.
                 </p>
@@ -73,7 +78,7 @@ const DiaryCollection: React.FC = () => {
       </section>
 
       {/* COLLECTION SECTION */}
-      <section className="max-w-[1440px] mx-auto px-6 py-24">
+      <section className="max-w-[1440px] mx-auto px-6 py-12">
         <div className="text-center mb-20">
           <h2 className="font-display text-5xl md:text-7xl mb-4 text-serif-text">The Collection</h2>
           <span className="font-script text-primary text-3xl">curated works & projects</span>
