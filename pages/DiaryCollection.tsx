@@ -11,8 +11,8 @@ const DiaryCollection: React.FC = () => {
     },
     { 
       id: '02', 
-      title: 'Medical', 
-      img: 'https://i.pinimg.com/736x/d7/03/fa/d703fa10a6e9f36667b30b724c7cac4f.jpg', 
+      title: 'Wedding Planning App', 
+      img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80', 
       rot: 'rotate-1' 
     },
     { 

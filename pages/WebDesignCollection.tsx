@@ -6,30 +6,44 @@ const WebDesignCollection: React.FC = () => {
     {
       id: 'web-01',
       title: 'The Orange Bus',
-      img: 'https://images.unsplash.com/photo-1523913950023-c27f85fb8510?auto=format&fit=crop&w=800&q=80',
-      tag: 'Branding & Web Design',
+      img: 'https://i.imgur.com/lrXBumX.png',
+      tag: 'branding & web design',
       rot: '-rotate-2'
     },
     {
       id: 'web-02',
-      title: 'Studio Archive',
-      img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
-      tag: 'Portfolio',
+      title: 'Wedding Planning App',
+      img: 'https://i.imgur.com/dRWSQIl.png',
+      tag: 'app design | mock project',
       rot: 'rotate-1'
     },
     {
       id: 'web-03',
-      title: 'Mindful App',
-      img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
-      tag: 'UI/UX Design',
+      title: 'Digest - a The Publics product',
+      img: 'https://i.imgur.com/Xqngld5.png',
+      tag: 'branding & web design | startup',
       rot: '-rotate-1'
     },
     {
       id: 'web-04',
-      title: 'Frequency Festival',
-      img: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?auto=format&fit=crop&w=800&q=80',
-      tag: 'Event Design',
+      title: 'Invictus Labs',
+      img: 'https://i.imgur.com/jIn7iZ0.png',
+      tag: 'branding & web design | startup',
       rot: 'rotate-2'
+    },
+    {
+      id: 'web-05',
+      title: 'witchy brew',
+      img: 'https://i.imgur.com/W669QSW.png',
+      tag: 'logo design | mock project',
+      rot: '-rotate-2'
+    },
+    {
+      id: 'web-06',
+      title: 'Wellness Dashboard',
+      img: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=80',
+      tag: 'branding & web design | startup',
+      rot: 'rotate-1'
     }
   ];
 
@@ -97,7 +111,7 @@ const WebDesignCollection: React.FC = () => {
           <span className="font-script text-primary text-3xl">digital architecture & design</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 xl:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 xl:gap-8 max-w-7xl mx-auto">
           {projects.map((item) => (
             <div 
               key={item.id} 

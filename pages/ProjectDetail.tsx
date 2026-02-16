@@ -44,10 +44,11 @@ const ProjectCard: React.FC<{
   isMedical?: boolean;
   hideScroll?: boolean;
   isWeb?: boolean;
-}> = ({ title, image, iframeSrc, link, children, footerLabel, isMedical = false, hideScroll = false, isWeb = false }) => {
+  isVertical?: boolean;
+}> = ({ title, image, iframeSrc, link, children, footerLabel, isMedical = false, hideScroll = false, isWeb = false, isVertical = false }) => {
   const Content = (
-    <div className={`bg-[#fdf8f1] p-0 polaroid-shadow overflow-hidden flex flex-col md:flex-row h-full md:min-h-[550px] w-full max-w-5xl ${isWeb ? 'border-2 border-primary/20' : ''}`}>
-      <div className="md:w-1/2 h-[400px] md:h-auto overflow-hidden border-b md:border-b-0 md:border-r border-black/5 shrink-0 bg-white relative">
+    <div className={`bg-[#fdf8f1] p-0 polaroid-shadow overflow-hidden flex flex-col ${isVertical ? '' : 'md:flex-row md:min-h-[650px]'} h-full w-full max-w-5xl ${isWeb ? 'border-2 border-primary/20' : ''}`}>
+      <div className={`${isVertical ? 'w-full h-[600px]' : 'md:w-[35%] h-[450px] md:h-auto md:border-r'} overflow-hidden border-b border-black/5 shrink-0 bg-white relative`}>
         {iframeSrc ? (
           <iframe 
             src={iframeSrc}
@@ -59,11 +60,11 @@ const ProjectCard: React.FC<{
           <img 
             src={image} 
             alt={title} 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className={`w-full h-full ${isVertical ? 'object-contain p-8' : 'object-cover'} transition-transform duration-700 group-hover:scale-105`}
           />
         )}
       </div>
-      <div className="md:w-1/2 p-10 text-[#1d1d1b] flex flex-col h-full relative bg-[#fdf8f1]">
+      <div className={`${isVertical ? 'w-full' : 'md:w-[65%]'} p-10 text-[#1d1d1b] flex flex-col h-full relative bg-[#fdf8f1]`}>
         <div className={`${hideScroll ? 'overflow-hidden' : 'overflow-y-auto'} pr-4 flex-grow ${isMedical ? 'delicate-scrollbar show-scroll-indicator' : (hideScroll ? '' : 'scrollbar-thin scrollbar-thumb-primary/20')}`}>
           <h2 className={`font-display text-3xl font-bold mb-6 leading-tight ${isWeb ? 'text-primary italic' : 'text-primary'}`}>{title}</h2>
           <div className="font-display text-base leading-relaxed text-slate-800 space-y-6">
@@ -111,7 +112,7 @@ const ProjectDetail: React.FC = () => {
           className={`group inline-flex items-center font-display mt-12 mb-20 hover:opacity-70 transition-opacity text-primary`}
         >
           <span className={`uppercase tracking-[0.4em] text-[15px] font-bold border-b-2 pb-2 border-primary`}>
-            Back to {isWebDesignProject ? "Archive" : "Collection"}
+            Back to {isWebDesignProject ? "Projects" : "Collection"}
           </span>
         </Link>
         <div className="flex flex-col items-start gap-8 py-12">
@@ -123,16 +124,14 @@ const ProjectDetail: React.FC = () => {
 
   // Web Design Projects
   if (id === 'web-01') {
-    // Figma Prototype URL
     const figmaProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FEIfYUAE7nlZ829vCnl90ou%2FThe-Orange-Bus%3Fnode-id%3D2008-31%26p%3Df%26t%3DDG0dKOKq1T43aHDe-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D2008%253A31";
 
     return (
       <PageWrapper>
         <ProjectCard 
-          title="The Orange Bus: Branding & Web Design Case Study" 
+          title="The Orange Bus: branding & web design case study" 
           iframeSrc={figmaProtoUrl}
           isWeb={true}
-          footerLabel="Digital Experience & Brand Transformation"
         >
           <p>
             The Orange Bus brand identity blends vintage VW nostalgia with contemporary design through a warm color palette of oranges, creams, and browns pulled from classic 1970s buses. Clean typography and sun-drenched lifestyle photography position the service as a premium experience rather than a commodity, while playful retro touches keep the brand approachable and fun.
@@ -150,7 +149,6 @@ const ProjectDetail: React.FC = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-display italic text-primary font-bold border-b border-primary/30 pb-1 hover:border-primary transition-all"
             >
-              <span className="material-symbols-outlined text-sm">history</span>
               View the "Before" Concept
             </a>
           </div>
@@ -159,49 +157,112 @@ const ProjectDetail: React.FC = () => {
     );
   }
 
-  if (id === 'web-02') {
+  // Web Card 2 - Wedding Planning App
+  if (id === 'web-02' || id === '02') {
+    const weddingProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fih3rrMTYpGnqafRzKe3iKc%2FWedding-Planning-App---in-progress%3Fnode-id%3D3-2939%26t%3DwdngUEpYaCjXqU77-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D3%253A2939";
+
     return (
       <PageWrapper>
         <ProjectCard 
-          title="studio archive" 
-          image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+          title="Wedding Planning App: branding & design case study" 
+          iframeSrc={weddingProtoUrl}
           isWeb={true}
-          footerLabel="UI/UX + React Animation Case Study"
         >
-          <p>A digital home for a high-energy creative agency. This project was a playground for custom animations and bold typography.</p>
-          <p>Built with React and GSAP, the site features fluid transitions and a horizontal scrolling portfolio that mimics the experience of flipping through a physical archive.</p>
+          <p>
+            The app's visual system balances wedding industry elegance with clean usability. A soft blush background provides warmth without overwhelming, while rounded cards and gentle shadows create hierarchy. The design smartly integrates planning tools (colorful, illustrated cards for checklists and budget tracking) directly alongside vendor browsing, acknowledging that couples need both inspiration and organization in one place. Star ratings and high-quality vendor photography establish immediate credibility.
+          </p>
+          <p>
+            The interface prioritizes scannable vendor discovery with image-led cards that communicate style and quality at a glance. Each category (flower shops, photographers, venues) uses consistent layouts with prominent imagery, vendor names, and ratings, allowing quick comparison. The photographer profiles intelligently include portfolio snippets and direct contact actions, reducing friction between discovery and outreach. A persistent bottom navigation keeps core functions (Home, Explore, Checklist, Sharing, Profile) always accessible.
+          </p>
+          <p>
+            The integrated checklist feature demonstrates thoughtful UX that respects the wedding planning timeline. Tasks are organized by timeframe (12+ months, 9 months, 6-8 months, etc.) with clear checkboxes, turning an overwhelming to-do list into manageable phases. By combining vendor marketplace, planning tools, and progress tracking in one cohesive experience, the app becomes a daily companion rather than just a directory, reducing app-switching and keeping couples focused on their vision.
+          </p>
         </ProjectCard>
       </PageWrapper>
     );
   }
 
+  // Web Card 3 - Digest - a The Publics product
   if (id === 'web-03') {
+    const platformProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FeZ8mYj8ZG62Hfl9EOxfrgJ%2FUntitled%3Fnode-id%3D1-111%26t%3DwdngUEpYaCjXqU77-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D1%3A111";
+
     return (
       <PageWrapper>
         <ProjectCard 
-          title="mindful app" 
-          image="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
+          title="Digest - a The Publics product: branding & design case study" 
+          iframeSrc={platformProtoUrl}
           isWeb={true}
-          footerLabel="App Design + UX Research"
         >
-          <p>Wellness app focused on mental health and daily journaling. The UX research phase identified a need for "calm design"—avoiding notification fatigue and using soothing gradients.</p>
-          <p>The prototype includes mood tracking, guided meditations, and a secure, private journaling space with voice-to-text integration.</p>
+          <p>
+            The platform's dark teal interface and vibrant gradient cards visually communicate its core mission: bridging text-based data systems with GenAI's multimodal capabilities. Each gradient represents transformation across formats, positioning the tool as built for the AI era rather than retrofitted from legacy systems.
+          </p>
+          <p>
+            The interface prioritizes discovery over search, using familiar metaphors like bookshelves and libraries to make AI-powered curation feel intuitive. Curated collections ("Trending community bookshelves," "Top picks for you") surface content through algorithmic recommendations rather than manual filtering, allowing users to scan across text, visual, and conceptual dimensions simultaneously.
+          </p>
+          <p>
+            Strategic UX decisions hide technical complexity behind approachable patterns. By designing for synthesis rather than retrieval, the platform aligns with how creative collaborators actually work: gathering inspiration across formats and remixing ideas, exactly what GenAI excels at, now with a human-centered interface.
+          </p>
         </ProjectCard>
       </PageWrapper>
     );
   }
 
+  // Web Card 4 - Invictus Labs
   if (id === 'web-04') {
+    const invictusProtoUrl = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fnv9egUKEFUQabduVgBjc0U%2FInvictus-Labs-Landing-Page%3Fnode-id%3D212-6%26t%3DkVOTl4l1RjE2x8Ze-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1";
+
     return (
       <PageWrapper>
         <ProjectCard 
-          title="frequency festival" 
-          image="https://images.unsplash.com/photo-1459749411177-042180ce673c?auto=format&fit=crop&w=800&q=80"
+          title="Invictus Labs: branding & design case study" 
+          iframeSrc={invictusProtoUrl}
           isWeb={true}
-          footerLabel="Event Branding + Interactive Site"
         >
-          <p>Event branding and marketing site for an annual experimental music festival. We pushed the visual limits with neon colors and glitch effects to match the festival's cutting-edge vibe.</p>
-          <p>The site features a real-time artist lineup that updates based on the festival schedule and an interactive 3D map of the grounds.</p>
+          <p>
+            The visual identity positions Invictus Labs as a credible technical solution in the Web3 space. A deep navy backdrop with molecular and network imagery establishes scientific rigor, while bright cyan accents provide energy without crypto hype. The design borrows from biotech and data visualization—DNA helixes, network graphs—to ground abstract DeFi concepts in tangible, trustworthy frameworks.
+          </p>
+          <p>
+            The landing page follows a problem-solution-methodology flow with Web3-native sophistication. Iconographic cards quickly communicate pain points, while data visualizations demonstrate analytical depth. Strategic whitespace and modular sections create digestibility for complex topics, serving both technical and general audiences.
+          </p>
+          <p>
+            Design decisions prioritize legitimacy in an industry plagued by opacity. Network logos and investor badges leverage social proof, while "Learn More" CTAs suggest confidence over urgency. The molecular metaphor for "Modeling the DNA of Web3 Lending" frames their quantitative approach as fundamental science rather than financial speculation—appealing to serious DeFi participants while remaining accessible to newcomers.
+          </p>
+        </ProjectCard>
+      </PageWrapper>
+    );
+  }
+
+  // Web Card 5 - witchy brew
+  if (id === 'web-05') {
+    return (
+      <PageWrapper>
+        <ProjectCard 
+          title="witchy brew: logo design case study" 
+          image="https://i.imgur.com/nlF8Sqi.png"
+          isWeb={true}
+          isVertical={true}
+          footerLabel="logo design | mock project"
+        >
+          <p>The Witchy Brew identity playfully merges occult aesthetics with coffee culture through a whimsical illustration of a witch's boot stirring a steaming cup. The logo exists in two colorways, a moody dark version with cream illustration and a soft pink variant with purple accents, allowing flexibility across applications while maintaining brand recognition. The hand-drawn quality of the steam and boot creates approachability, preventing the witchy theme from feeling too dark or exclusive.</p>
+          <p>Typography balances the playful concept with sophistication. The serif wordmark "witchy brew" uses elegant, slightly condensed letterforms that nod to apothecary-style branding without becoming overly mystical or illegible. The tagline "coffee, roastery & more" in clean sans-serif grounds the brand in its actual offering, ensuring customers understand this is a legitimate coffee business first, themed experience second.</p>
+          <p>The dual colorway strategy demonstrates smart brand positioning. The dark version works for moody café interiors, packaging, and nighttime events, while the pink version appeals to a broader, Instagram-friendly audience and daytime retail contexts. This versatility allows Witchy Brew to attract both alternative culture enthusiasts and mainstream coffee lovers seeking something more memorable than generic café branding.</p>
+        </ProjectCard>
+      </PageWrapper>
+    );
+  }
+
+  // Web Card 6 - Wellness Dashboard
+  if (id === 'web-06') {
+    return (
+      <PageWrapper>
+        <ProjectCard 
+          title="Wellness Dashboard: branding & design case study" 
+          image="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=80"
+          isWeb={true}
+          footerLabel="Product Design + SaaS"
+        >
+          <p>A comprehensive SaaS platform for holistic health practitioners. The design focuses on high-density data visualization that remains approachable and calming.</p>
+          <p>Strategic use of muted earth tones and soft iconography helps practitioners manage complex patient data without the clinical coldness of traditional EHR systems.</p>
         </ProjectCard>
       </PageWrapper>
     );
@@ -213,16 +274,6 @@ const ProjectDetail: React.FC = () => {
       <PageWrapper>
         <ProjectCard title="Real Estate Archive" image="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" link="https://www.brixleyapartments.com/" footerLabel="Visit Website">
           <p>Luxury residential development in Florida. The design emphasizes modern aesthetics and community ease of navigation.</p>
-        </ProjectCard>
-      </PageWrapper>
-    );
-  }
-
-  if (id === '02') {
-    return (
-      <PageWrapper>
-        <ProjectCard title="GERD Medical Report" image="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" isMedical={true}>
-          <p>Gastroesophageal reflux disease (GERD) is a common condition characterized by the reflux of gastric contents back into the esophagus.</p>
         </ProjectCard>
       </PageWrapper>
     );
