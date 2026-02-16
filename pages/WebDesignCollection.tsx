@@ -49,8 +49,15 @@ const WebDesignCollection: React.FC = () => {
 
   return (
     <div className="bg-site-bg min-h-screen pt-16 animate-fade-in">
+      {/* BACK BUTTON */}
+      <div className="max-w-[1440px] mx-auto px-12 pt-8">
+        <Link to="/" className="inline-flex items-center gap-2 group text-serif-text/40 hover:text-primary transition-colors">
+          <span className="font-display text-[10px] uppercase tracking-widest">Back</span>
+        </Link>
+      </div>
+
       {/* BROWSER VIEWPORT HEADER */}
-      <section className="max-w-[1440px] mx-auto px-12 pt-24 pb-12 flex flex-col items-center">
+      <section className="max-w-[1440px] mx-auto px-12 pt-16 pb-12 flex flex-col items-center">
         <div className="w-full max-w-5xl bg-[#fdfbf7] rounded-lg shadow-2xl overflow-hidden border border-slate-200">
           {/* Browser Toolbar Area */}
           <div className="bg-slate-100 px-6 py-4 border-b border-slate-200 flex items-center justify-between">

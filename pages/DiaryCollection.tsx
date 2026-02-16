@@ -37,6 +37,13 @@ const DiaryCollection: React.FC = () => {
 
   return (
     <div className="bg-site-bg min-h-screen pt-16 animate-fade-in">
+      {/* BACK BUTTON */}
+      <div className="max-w-[1440px] mx-auto px-12 pt-8">
+        <Link to="/" className="inline-flex items-center gap-2 group text-serif-text/40 hover:text-primary transition-colors">
+          <span className="font-display text-[10px] uppercase tracking-widest">Back</span>
+        </Link>
+      </div>
+
       {/* POSTCARD SECTION */}
       <section className="max-w-[1440px] mx-auto px-12 py-12 flex flex-col items-center">
         <div className="relative w-full max-w-4xl bg-[#fdf8f1] p-1 shadow-2xl transform rotate-[-2deg]">
@@ -48,7 +55,6 @@ const DiaryCollection: React.FC = () => {
                 <span className="text-7xl font-display uppercase tracking-[1.5rem] text-[#1d1d1b]">POST</span>
               </div>
               
-              {/* Updated portrait image with mix-blend-multiply and color preserved */}
               <img 
                 src="https://i.imgur.com/pUHz06m.png" 
                 alt="Portrait" 

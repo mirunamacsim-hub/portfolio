@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import DiaryCollection from './pages/DiaryCollection';
 import WebDesignCollection from './pages/WebDesignCollection';
@@ -7,6 +7,15 @@ import MarketingCollection from './pages/MarketingCollection';
 import ProjectDetail from './pages/ProjectDetail';
 
 const Header: React.FC = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  const navLinks = [
+    { label: 'Marketing', path: '/marketing' },
+    { label: 'Copywriting', path: '/diary' },
+    { label: 'Web Design', path: '/web-design' },
+  ];
+
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-8 py-4 flex justify-between items-center bg-transparent">
       <Link to="/" className="flex items-center gap-1.5 group select-none">
@@ -16,7 +25,22 @@ const Header: React.FC = () => {
           <span className="font-display text-lg leading-[0.8] tracking-tight text-serif-text">acsim</span>
         </div>
       </Link>
-      <nav></nav>
+      
+      {!isHome && (
+        <nav className="flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.path}
+              to={link.path}
+              className={`font-display text-[10px] uppercase tracking-[0.2em] transition-all duration-300 hover:text-primary ${
+                location.pathname === link.path ? 'text-primary' : 'text-serif-text/60'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      )}
     </header>
   );
 };

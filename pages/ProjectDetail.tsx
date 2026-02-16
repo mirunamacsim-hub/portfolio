@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const StarField: React.FC = () => {
   const stars = React.useMemo(() => {
@@ -149,13 +149,21 @@ const ProjectCard: React.FC<{
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const isWebDesignProject = id && id.startsWith('web-');
+
+  const backPath = isWebDesignProject ? '/web-design' : '/diary';
 
   const PageWrapper: React.FC<{ children: React.ReactNode; categoryTitle?: string }> = ({ children, categoryTitle }) => (
     <main className="relative min-h-screen pt-32 pb-24 flex flex-col items-center animate-fade-in overflow-hidden bg-site-bg">
       <StarField />
       
-      {/* Navigation button removed as requested */}
+      {/* BACK BUTTON */}
+      <div className="max-w-3xl w-full px-8 mb-8 z-20">
+        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 group text-serif-text/40 hover:text-primary transition-colors">
+          <span className="font-display text-[10px] uppercase tracking-widest">Back</span>
+        </button>
+      </div>
 
       <div className="max-w-3xl w-full px-8 z-10 flex flex-col items-center">
         {categoryTitle && (
