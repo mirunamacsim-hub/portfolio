@@ -44,7 +44,7 @@ interface Article {
 
 const ArticleCard: React.FC<Article> = ({ title, image, preview, link, isFullText = false }) => {
   const CardContent = (
-    <div className="bg-[#fdf8f1] p-0 polaroid-shadow overflow-hidden flex flex-col md:flex-row h-[320px] w-full border border-black/5 group-hover:border-primary/20 transition-colors">
+    <div className="bg-[#fdf8f1] p-0 polaroid-shadow overflow-hidden flex flex-col md:flex-row h-[420px] w-full border border-black/5 group-hover:border-primary/20 transition-colors">
       <div className="md:w-[40%] h-full shrink-0 bg-white relative border-r border-black/5 overflow-hidden">
         <img 
           src={image} 
@@ -52,15 +52,17 @@ const ArticleCard: React.FC<Article> = ({ title, image, preview, link, isFullTex
           className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
         />
       </div>
-      <div className="md:w-[60%] p-6 text-[#1d1d1b] flex flex-col h-full bg-[#fdf8f1]">
-        <h2 className="font-display text-xl font-bold mb-3 text-primary leading-tight line-clamp-2">{title}</h2>
-        <div className={`flex-grow pr-2 ${isFullText ? 'overflow-y-auto delicate-scrollbar show-scroll-indicator pr-4' : 'overflow-hidden'}`}>
-          <div className={`font-display text-sm leading-relaxed text-slate-800 ${isFullText ? 'space-y-3' : 'line-clamp-[5]'}`}>
+      <div className="md:w-[60%] p-6 text-[#1d1d1b] flex flex-col h-full bg-[#fdf8f1] overflow-hidden">
+        <h2 className="font-display text-xl font-bold mb-3 text-primary leading-tight shrink-0">
+          {title}
+        </h2>
+        <div className={`flex-grow min-h-0 pr-2 ${isFullText ? 'overflow-y-auto delicate-scrollbar show-scroll-indicator pr-4' : 'overflow-hidden'}`}>
+          <div className={`font-display text-sm leading-relaxed text-slate-800 ${isFullText ? 'space-y-4 pb-6' : 'line-clamp-[8]'}`}>
             {preview}
           </div>
         </div>
         {!isFullText && link && (
-          <div className="mt-3 pt-3 border-t border-slate-200">
+          <div className="mt-3 pt-3 border-t border-slate-200 shrink-0">
              <span className="font-display text-[9px] uppercase tracking-[0.2em] font-bold text-primary/60 group-hover:text-primary transition-colors">
                Read article →
              </span>
@@ -198,13 +200,63 @@ const ProjectDetail: React.FC = () => {
           image="https://i.pinimg.com/1200x/b0/42/58/b04258d61b50af98e14e5242dde3ca0f.jpg"
           preview={
             <>
-              <p>Gastroesophageal reflux disease (GERD) is a common condition characterized by the reflux of gastric food contents back into the esophagus. Reflux can cause damage not only to the esophagus but also to the pharynx or upper respiratory tract.</p>
-              <h3 className="font-bold text-base mt-4">Causes</h3>
-              <p>Disruption of the lower esophageal sphincter path can result in reflux. Hiatal hernias also contribute by allowing abdominal organs to slide through the diaphragm.</p>
-              <h3 className="font-bold text-base mt-4">Symptoms</h3>
-              <p>Main symptom is heartburn, a burning sensation in the chest and regurgitation of sour fluid.</p>
-              <h3 className="font-bold text-base mt-4">Treatment</h3>
-              <p>Lifestyle changes (smoking cessation, weight loss) and medical treatment (antiacids) are primary. Surgical options like fundoplication exist for persistent cases.</p>
+              <p>Gastroesophageal reflux disease (GERD) is a common condition in the general population, characterized by the reflux of gastric food contents back into the esophagus. Esophageal reflux occurs physiologically over short periods of time and is considered pathological when it causes symptoms or damage to the esophageal mucosa. Reflux can cause damage not only to the esophagus but also to the pharynx or upper respiratory tract (vocal cords, trachea, bronchi).</p>
+              <p>Most people can manage the discomfort caused by GERD through lifestyle changes and over-the-counter medication. But some people with GERD may need stronger medications or surgery to alleviate symptoms.</p>
+              
+              <h3 className="font-bold text-base mt-6 border-b border-primary/20 pb-1">Causes</h3>
+              
+              <h4 className="font-bold text-sm mt-4 text-primary italic">Disordered eating patterns</h4>
+              <p>To understand what's going on, it's necessary to explain some anatomy and physiology. When feeding, after food is chewed and swallowed, it passes through a tube called the esophagus, which connects the mouth to the stomach. Between the esophagus and the stomach is the lower esophageal sphincter, which is a muscular ring that allows solid or liquid food to pass into the stomach, without allowing it to return along the route it has taken. Food then leaves the stomach through another sphincter called the pylorus, which is the structure between the stomach and the duodenum. Thus, disruption of this food pathway for various reasons can result in reflux.</p>
+              
+              <h4 className="font-bold text-sm mt-4 text-primary italic">Hiatal hernia</h4>
+              <p>A hiatal hernia is a type of hernia in which the abdominal organs (usually the stomach) slide through the diaphragm into the middle compartment of the chest. This can result in gastroesophageal reflux disease (GERD) or laryngopharyngeal reflux, with symptoms such as a retrosternal burning sensation and an acidic taste.</p>
+              
+              <h3 className="font-bold text-base mt-6 border-b border-primary/20 pb-1">Risk factors</h3>
+              <p>Risk factors for gastroesophageal reflux disease include:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Alcohol consumption;</li>
+                <li>Obesity;</li>
+                <li>Pregnancy;</li>
+                <li>Smoking;</li>
+                <li>Eating certain foods such as citrus fruits, chocolate, caffeine, fats, spices, and chili peppers.</li>
+                <li>Taking medicines such as aspirin, diazepam, estrogen, and progesterone.</li>
+              </ul>
+              
+              <h3 className="font-bold text-base mt-6 border-b border-primary/20 pb-1">Symptoms</h3>
+              <p>The main symptom of GERD is heartburn, often described as a burning sensation in the chest and regurgitation of sour or bitter fluid into the throat or mouth. The combination of heartburn and regurgitation is such a common feature of GERD that formal tests may be unnecessary.</p>
+              <p>Other GERD symptoms include:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Chest pain without burning, which is usually located in the middle of the chest and radiates to the back;</li>
+                <li>Difficulty swallowing (dysphagia);</li>
+                <li>Atypical reflux symptoms related to the ENT sphere (pharynx, larynx, airways): sore throat, coughing, increased salivation, and shortness of breath.</li>
+              </ul>
+              
+              <h3 className="font-bold text-base mt-6 border-b border-primary/20 pb-1">Treatment</h3>
+              <p>If you experience heartburn or other GERD-specific symptoms lately, it is advisable to schedule a consultation with a doctor specializing in internal medicine or gastroenterology. If you are diagnosed with GERD, your doctor will initially recommend lifestyle changes and medication. If after at least 8 weeks of treatment, there is no improvement in symptoms, the doctor will reassess the situation and reconsider treatment.</p>
+              
+              <h4 className="font-bold text-sm mt-4 text-primary italic">Lifestyle changes</h4>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Smoking cessation;</li>
+                <li>Avoiding alcohol consumption;</li>
+                <li>Weight loss (if necessary);</li>
+                <li>Avoiding lying flat for at least 3 hours after eating;</li>
+                <li>Eating small, frequent meals.</li>
+              </ul>
+              
+              <h4 className="font-bold text-sm mt-4 text-primary italic">Medical treatment</h4>
+              <p>Prescribed medications include:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li><strong>Antiacids:</strong> neutralizes gastric acid - Rennie, Maalox;</li>
+                <li><strong>Drugs that reduce acid production:</strong> (H2 receptor antagonists) - Ranitidine, Famotidine;</li>
+                <li><strong>Drugs that block acid production:</strong> (proton pump inhibitors) - Omez, Nexium, Controloc;</li>
+                <li><strong>Agents that strengthen the lower esophageal sphincter:</strong> (prokinetics) - Metoclopramide, Domperidone.</li>
+              </ul>
+              
+              <h4 className="font-bold text-sm mt-4 text-primary italic">Surgical treatment</h4>
+              <p><strong>Laparoscopic fundoplication:</strong> Surgery is recommended in patients who show no improvement after optimal drug therapy and lifestyle changes or who develop complications. In this procedure, the lower esophageal sphincter is strengthened by making a valve from the stomach walls wrapped around the terminal esophagus.</p>
+              <p><strong>Gastric bypass surgery:</strong> In the case of advanced esophageal lesions or if the reflux is maintained by high body weight, then laparoscopic bariatric surgery of the Roux-en-Y gastric bypass type is considered.</p>
+              
+              <p className="mt-6 italic border-t pt-4 border-slate-200">Although gastroesophageal reflux is a physiological phenomenon encountered throughout the day, it may become problematic when it occurs frequently or is accompanied by chest pain or other specific symptoms, leading to GERD. Implementing a balanced lifestyle may be enough to prevent this condition.</p>
             </>
           }
         />
@@ -214,13 +266,29 @@ const ProjectDetail: React.FC = () => {
           image="https://i.pinimg.com/1200x/b7/53/c6/b753c6a3f341b26be2ea5c7364104fb5.jpg"
           preview={
             <>
-              <p>COVID-19 precipitated shifts in consumer behavior that remain today, with 85% of Americans making changes in their eating habits during the pandemic.</p>
-              <h3 className="font-bold text-base">1. Reducetarianism</h3>
-              <p>Alternatives like lentils and soy milk offer an easy way to cut back on meat and dairy without noticing it too much.</p>
-              <h3 className="font-bold text-base">2. CBD Trend</h3>
-              <p>A multibillion-dollar sector that continues to grow as one of the most studied natural remedies in the world.</p>
-              <h3 className="font-bold text-base">3. Plant-based diet</h3>
-              <p>Focuses on foods primarily from plants: fruits, vegetables, nuts, whole grains, and beans.</p>
+              <p>Although the impact of COVID-19 tested the resilience of the food supply chain and heightened food insecurity, it also precipitated shifts in consumer behavior that will likely remain for quite some time.</p>
+              <p>A 2020 survey from the International Food Information Council (IFIC) found that 85% of Americans made changes in their eating habits during the pandemic, indicating an increased awareness concerning nutrition and its impact on health.</p>
+              <p>After a stressful 2020, many people have used food as a means of comfort. The food trends of 2021 point toward better health for our bodies, planet, and wallets. But what has changed this year? Though some 2021 trends are still around, 2022 brings us new ideas and new lifestyles to try!</p>
+              
+              <h3 className="font-bold text-base mt-6 text-primary">Reducetarianism Trend</h3>
+              <p>If you're thinking of going plant-based but aren't really ready to give up meat, dairy, and eggs, then this is the food trend for you. If you decide to give this a try, a surprisingly easy way to cut back on your meat and dairy intake without noticing it too much is by introducing alternatives. Adding lentils, beans, and other vegetarian forms of protein into your diet is already a great way to eat less. It can even be as simple as switching from cow’s milk to soy, almond, or coconut milk in the mornings.</p>
+              
+              <h3 className="font-bold text-base mt-6 text-primary">CBD Trend</h3>
+              <p>The CBD industry is already a multibillion-dollar sector that will only get bigger as millions of consumers have made their choice. The efficacy of CBD products concerning various health conditions has, for a long time, remained up for debate, with scientific research ongoing. But that number continues to grow, which makes cannabinoids now one of the most studied natural remedies in the world. If you’re interested in trying it for yourself, there are numerous options you can choose from. Whether it’s oils, gummies, capsules, or even lotions and massage oils, there is one for everybody!</p>
+              
+              <h3 className="font-bold text-base mt-6 text-primary">Plant-based diet</h3>
+              <p>Some people may say that one of the most important steps you can take to improve your health and prevent chronic diseases is to switch to a plant-based diet. A plant-based or plant-forward eating diet focuses on foods primarily from plants. This includes not only fruits and vegetables, but also nuts, whole grains, and beans. It doesn’t mean that you completely give up on meat or dairy, but that you are choosing more of your foods from plant sources.</p>
+              
+              <h3 className="font-bold text-base mt-6 text-primary">Fusion Cuisine</h3>
+              <p>In a hope of being more inclusive of people’s palates and cooking styles across borders, fusion cuisine has surged forward. While food authentic to a particular cuisine is still enjoyed, there are fusion foods that are being embraced that do justice to both cuisines. This could be anything from a restaurant that serves sushi along with south Indian fare to a food outlet that specializes in Indian food but also has pizza and pasta on the menu. Fusion cuisines also have two cuisines married to produce fusion dishes that appeal to people from both segments.</p>
+              
+              <h3 className="font-bold text-base mt-6 text-primary">Organic products</h3>
+              <p>It’s no secret that since the pandemic people have started paying more attention to the foods they are consuming, trying to create a more sustainable lifestyle, which is why organic products have become so popular. Whether people are buying them, ordering them online, or even personally planting them in their gardens, organic products are a must in everyone’s kitchen nowadays, as they are fresher, contain fewer pesticides, and can be richer in certain nutrients.</p>
+              
+              <h3 className="font-bold text-base mt-6 text-primary">Zero-Waste Cooking</h3>
+              <p>Zero-waste cooking is mainly about preventing food from going into the bin, but it is also about using sustainable cooking utensils and using sustainable ways to store food. One of the easiest ways to create a zero-waste kitchen is to now throw away your food scraps. These can easily add on during the cooking process. So what can you do with them? One of the most overlooked options is to simply eat them. If you have any leftovers, try using them in another recipe!</p>
+              
+              <p className="mt-6 font-medium text-slate-700">Although 2020 has been a stressful and eventful year, we’ve learned how to take better care of ourselves and our bodies, and we’re carrying this lifestyle into 2022 as well. Take a leap and try new ideas and lifestyles and see how that can change your health and eating habits.</p>
             </>
           }
         />
@@ -314,7 +382,9 @@ const ProjectDetail: React.FC = () => {
       return (
         <PageWrapper>
           <ProjectCard title="The Orange Bus: branding & web design" iframeSrc={figmaProtoUrl} isWeb={true}>
-            <p>The Orange Bus brand identity blends vintage VW nostalgia with contemporary design. The result is a cohesive digital presence that extends the brand experience beyond the physical bus.</p>
+            <p>The Orange Bus brand identity blends vintage VW nostalgia with contemporary design through a warm color palette of oranges, creams, and browns pulled from classic 1970s buses. Clean typography and sun-drenched lifestyle photography position the service as a premium experience rather than a commodity, while playful retro touches keep the brand approachable and fun.
+The website prioritizes visual storytelling with large, immersive imagery and a streamlined booking flow—view packages, check availability, book. Subtle design elements like rounded corners and warm gradients maintain the vintage aesthetic while modern UX patterns ensure the experience feels professional and intuitive across all devices.
+The result is a cohesive digital presence that extends the brand experience beyond the physical bus, making the booking process as memorable as the photo booth itself.</p>
           </ProjectCard>
         </PageWrapper>
       );
@@ -324,7 +394,9 @@ const ProjectDetail: React.FC = () => {
         return (
           <PageWrapper>
             <ProjectCard title="Wedding Planning App" iframeSrc={weddingProtoUrl} isWeb={true}>
-              <p>The app's visual system balances wedding industry elegance with clean usability. It combines vendor marketplace, planning tools, and progress tracking.</p>
+              <p>TThe app's visual system balances wedding industry elegance with clean usability. A soft blush background provides warmth without overwhelming, while rounded cards and gentle shadows create hierarchy. The design smartly integrates planning tools—colorful, illustrated cards for checklists and budget tracking—directly alongside vendor browsing, acknowledging that couples need both inspiration and organization in one place. Star ratings and high-quality vendor photography establish immediate credibility.
+The interface prioritizes scannable vendor discovery with image-led cards that communicate style and quality at a glance. Each category (flower shops, photographers, venues) uses consistent layouts with prominent imagery, vendor names, and ratings, allowing quick comparison. The photographer profiles intelligently include portfolio snippets and direct contact actions, reducing friction between discovery and outreach. A persistent bottom navigation keeps core functions—Home, Explore, Checklist, Sharing, Profile—always accessible.
+The integrated checklist feature demonstrates thoughtful UX that respects the wedding planning timeline. Tasks are organized by timeframe (12+ months, 9 months, 6-8 months, etc.) with clear checkboxes, turning an overwhelming to-do list into manageable phases. By combining vendor marketplace, planning tools, and progress tracking in one cohesive experience, the app becomes a daily companion rather than just a directory—reducing app-switching and keeping couples focused on their vision.</p>
             </ProjectCard>
           </PageWrapper>
         );
@@ -335,7 +407,9 @@ const ProjectDetail: React.FC = () => {
         return (
           <PageWrapper>
             <ProjectCard title="Digest - a The Publics product" iframeSrc={platformProtoUrl} isWeb={true}>
-              <p>Bridging text-based data systems with GenAI's multimodal capabilities through a synthesis-focused interface.</p>
+              <p>The platform's dark teal interface and vibrant gradient cards visually communicate its core mission: bridging text-based data systems with GenAI's multimodal capabilities. Each gradient—coral, purple, blue—represents transformation across formats, positioning the tool as built for the AI era rather than retrofitted from legacy systems.
+The interface prioritizes discovery over search, using familiar metaphors like bookshelves and libraries to make AI-powered curation feel intuitive. Curated collections—"Trending community bookshelves," "Top picks for you"—surface content through algorithmic recommendations rather than manual filtering, allowing users to scan across text, visual, and conceptual dimensions simultaneously.
+Strategic UX decisions hide technical complexity behind approachable patterns. By designing for synthesis rather than retrieval, the platform aligns with how creative collaborators actually work: gathering inspiration across formats and remixing ideas—exactly what GenAI excels at, now with a human-centered interface.</p>
             </ProjectCard>
           </PageWrapper>
         );
@@ -346,7 +420,9 @@ const ProjectDetail: React.FC = () => {
         return (
           <PageWrapper>
             <ProjectCard title="Invictus Labs" iframeSrc={invictusProtoUrl} isWeb={true}>
-              <p>Legitimacy and rigorous quantitative modeling for DeFi lending protocols, framed through scientific molecular metaphors.</p>
+              <p>The visual identity positions Invictus Labs as a credible technical solution in the Web3 space. A deep navy backdrop with molecular and network imagery establishes scientific rigor, while bright cyan accents provide energy without crypto hype. The design borrows from biotech and data visualization—DNA helixes, network graphs—to ground abstract DeFi concepts in tangible, trustworthy frameworks.
+The landing page follows a problem-solution-methodology flow with Web3-native sophistication. Iconographic cards quickly communicate pain points, while data visualizations demonstrate analytical depth. Strategic whitespace and modular sections create digestibility for complex topics, serving both technical and general audiences.
+Design decisions prioritize legitimacy in an industry plagued by opacity. Network logos and investor badges leverage social proof, while "Learn More" CTAs suggest confidence over urgency. The molecular metaphor for "Modeling the DNA of Web3 Lending" frames their quantitative approach as fundamental science rather than financial speculation—appealing to serious DeFi participants while remaining accessible to newcomers.</p>
             </ProjectCard>
           </PageWrapper>
         );
@@ -356,7 +432,9 @@ const ProjectDetail: React.FC = () => {
         return (
           <PageWrapper>
             <ProjectCard title="witchy brew" image="https://i.imgur.com/nlF8Sqi.png" isWeb={true} isVertical={true}>
-              <p>Playfully merges occult aesthetics with coffee culture through whimsical illustration and apothecary-inspired typography.</p>
+              <p>The Witchy Brew identity playfully merges occult aesthetics with coffee culture through a whimsical illustration of a witch's boot stirring a steaming cup. The logo exists in two colorways—a moody dark version with cream illustration and a soft pink variant with purple accents—allowing flexibility across applications while maintaining brand recognition. The hand-drawn quality of the steam and boot creates approachability, preventing the witchy theme from feeling too dark or exclusive.
+Typography balances the playful concept with sophistication. The serif wordmark "witchy brew" uses elegant, slightly condensed letterforms that nod to apothecary-style branding without becoming overly mystical or illegible. The tagline "coffee, roastery & more" in clean sans-serif grounds the brand in its actual offering, ensuring customers understand this is a legitimate coffee business first, themed experience second.
+The dual colorway strategy demonstrates smart brand positioning. The dark version works for moody café interiors, packaging, and nighttime events, while the pink version appeals to a broader, Instagram-friendly audience and daytime retail contexts. This versatility allows Witchy Brew to attract both alternative culture enthusiasts and mainstream coffee lovers seeking something more memorable than generic café branding.</p>
             </ProjectCard>
           </PageWrapper>
         );
@@ -367,7 +445,9 @@ const ProjectDetail: React.FC = () => {
         return (
           <PageWrapper>
             <ProjectCard title="Floof App" iframeSrc={floofProtoUrl} isWeb={true}>
-              <p>Joyful pet adoption and comprehensive pet services with a community-driven, illustrated ecosystem.</p>
+              <p>The Floof brand identity leans fully into joy and approachability with playful bubble lettering, soft pastel backgrounds, and charming illustrated mascots. Each screen features adorable cartoon dogs and cats that convey warmth and personality, immediately signaling this isn't a sterile municipal adoption database—it's a community-driven platform that celebrates the emotional bond between pets and owners. The illustrated aesthetic makes pet adoption feel less intimidating and more like joining a loving ecosystem.
+The app architecture combines adoption discovery with comprehensive pet services, acknowledging that pet ownership is ongoing care, not just a single transaction. The "Find Your Furever Friend" interface uses visual-first pet cards with photos and key details (breed, age, gender, temperament), making browsing feel natural and delightful. The services section intelligently organizes offerings by category—bathing, grooming, dental, veterinary—with transparent pricing that builds trust. The friends list feature with real pet profiles creates social proof and community connection.
+Design decisions prioritize emotional engagement over clinical efficiency. Rounded corners, generous padding, and whimsical illustrations throughout maintain a consistent tone that reduces anxiety around pet adoption decisions. The bottom navigation keeps core functions—Home, Apps, Favorites, Messages, Profile—accessible, while the onboarding flow with illustrated mascots sets expectations for a friendly, supportive experience. Floof successfully positions pet adoption as the beginning of a joyful journey rather than a transactional necessity.</p>
             </ProjectCard>
           </PageWrapper>
         );

@@ -31,34 +31,6 @@ const AnimatedCounter: React.FC<{ end: number; duration?: number; suffix?: strin
   );
 };
 
-const CornerOrnament: React.FC<{ position: 'tl' | 'tr' | 'bl' | 'br' }> = ({ position }) => {
-  const rotation = {
-    tl: 'rotate-0',
-    tr: 'rotate-90',
-    bl: '-rotate-90',
-    br: 'rotate-180',
-  }[position];
-
-  const posClass = {
-    tl: 'top-1 left-1',
-    tr: 'top-1 right-1',
-    bl: 'bottom-1 left-1',
-    br: 'bottom-1 right-1',
-  }[position];
-
-  return (
-    <div className={`absolute ${posClass} ${rotation} pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-700`}>
-      <svg width="64" height="64" viewBox="0 0 100 100" fill="currentColor" className="text-primary">
-        <path d="M12.5,42.4c-2.2-4.1-3.4-8.7-3.4-13.6c0-15.5,12.6-28.1,28.1-28.1c11.3,0,21.1,6.7,25.5,16.3c-2.5-3.6-6.6-6-11.3-6 c-7.7,0-13.9,6.2-13.9,13.9c0,5.7,3.5,10.7,8.4,12.8c-10.4-1.2-18.4-9.9-18.4-20.5c0-11.4,9.2-20.6,20.6-20.6c1.9,0,3.7,0.3,5.4,0.7 c-4.6-1.5-9.6-2.4-14.7-2.4c-22.1,0-40,17.9-40,40c0,11,4.4,21,11.6,28.3L12.5,42.4z" />
-        <path d="M42.4,12.5c-4.1-2.2-8.7-3.4-13.6-3.4c-15.5,0-28.1,12.6-28.1,28.1c0,11.3,6.7,21.1,16.3,25.5c-3.6-2.5-6-6.6-6-11.3 c0-7.7,6.2-13.9,13.9-13.9c5.7,0,10.7,3.5,12.8,8.4c-1.2-10.4-9.9-18.4-20.5-18.4c-11.4,0-20.6,9.2-20.6,20.6c0,1.9,0.3,3.7,0.7,5.4 c-1.5-4.6-2.4-9.6-2.4-14.7c0-22.1,17.9-40,40-40c11,0,21,4.4,28.3,11.6L42.4,12.5z" />
-        <path d="M15.4,15.4c-1.3,1.3-1.6,3.3-0.7,4.9l4.3,7.5l7.5,4.3c1.6,0.9,3.6,0.6,4.9-0.7c1.3-1.3,1.6-3.3,0.7-4.9l-4.3-7.5 l-7.5-4.3C18.7,13.8,16.7,14.1,15.4,15.4z" />
-        <path d="M85,5c2.8,0,5,2.2,5,5s-2.2,5-5,5c-4.3,0-8.2,1.3-11.3,3.4C71.5,10.9,77.7,5,85,5z" />
-        <path d="M5,85c0,2.8,2.2,5,5,5s5-2.2,5-5c0-4.3,1.3-8.2,3.4-11.3C10.9,71.5,5,77.7,5,85z" />
-      </svg>
-    </div>
-  );
-};
-
 const CaseStudy: React.FC<{
   tag: string;
   title: string;
@@ -72,13 +44,7 @@ const CaseStudy: React.FC<{
   quote: string;
 }> = ({ tag, title, subtitle, section1Header, section1Copy, section2Header, section2Bullets, resultsHeader, resultsStats, quote }) => {
   return (
-    <div className="group relative bg-[#fdfbf7] p-8 md:p-12 polaroid-shadow mb-16 last:mb-0 border border-slate-200">
-      {/* Corner Ornaments */}
-      <CornerOrnament position="tl" />
-      <CornerOrnament position="tr" />
-      <CornerOrnament position="bl" />
-      <CornerOrnament position="br" />
-
+    <div className="group relative bg-[#fdfbf7] p-8 md:p-14 polaroid-shadow mb-16 last:mb-0 border border-slate-200">
       <div className="mb-10 relative z-10">
         <span className="font-display text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-2 block">{tag}</span>
         <h3 className="font-display text-3xl md:text-4xl text-[#1d1d1b] font-bold leading-tight mb-4">{title}</h3>
@@ -106,10 +72,10 @@ const CaseStudy: React.FC<{
         </div>
 
         {/* Column 3: The Quote */}
-        <div className="relative p-6 bg-slate-50 border border-slate-200 rounded-sm italic">
-          <span className="font-display text-primary text-4xl absolute -top-3 -left-1 opacity-20">"</span>
+        <div className="relative p-12 bg-slate-50 border border-slate-200 rounded-sm italic overflow-visible">
+          <span className="font-display text-primary text-9xl absolute -top-10 -left-4 opacity-100 font-bold select-none leading-none">"</span>
           <p className="font-display text-base text-slate-800 leading-relaxed relative z-10">{quote}</p>
-          <span className="font-display text-primary text-4xl absolute -bottom-6 -right-1 opacity-20 rotate-180">"</span>
+          <span className="font-display text-primary text-9xl absolute -bottom-10 -right-4 opacity-100 font-bold rotate-180 select-none leading-none">"</span>
         </div>
       </div>
 
