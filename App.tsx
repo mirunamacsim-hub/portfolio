@@ -5,6 +5,7 @@ import DiaryCollection from './pages/DiaryCollection';
 import WebDesignCollection from './pages/WebDesignCollection';
 import MarketingCollection from './pages/MarketingCollection';
 import ProjectDetail from './pages/ProjectDetail';
+import About from './pages/About';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const Header: React.FC = () => {
     { label: 'Marketing', path: '/marketing' },
     { label: 'Copywriting', path: '/diary' },
     { label: 'Web Design', path: '/web-design' },
+    { label: 'About', path: '/about' },
   ];
 
   return (
@@ -56,6 +58,7 @@ const App: React.FC = () => {
           <Route path="/web-design" element={<WebDesignCollection />} />
           <Route path="/marketing" element={<MarketingCollection />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
     </Router>
