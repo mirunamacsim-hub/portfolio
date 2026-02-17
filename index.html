@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miruna Macsim | Digital Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#E63946",
+                        "site-bg": "#1d1d1b",
+                        "serif-text": "#F3F4F6",
+                        "card-bg": "#2a2a28",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        script: ["Great Vibes", "cursive"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            background-color: #1d1d1b;
+            color: #F3F4F6;
+        }
+        .star-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(230, 57, 70, 0.1) 1px, transparent 0);
+            background-size: 50px 50px;
+        }
+        .postcard-border {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            border: 12px solid transparent;
+            border-image: repeating-linear-gradient(
+                -45deg,
+                #E63946 0, #E63946 20px,
+                transparent 20px, transparent 40px,
+                #457b9d 40px, #457b9d 60px,
+                transparent 60px, transparent 80px
+            ) 12;
+        }
+        .polaroid-shadow {
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Floating Stars Animation */
+        @keyframes floatingStar {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+            33% { transform: translate(30px, -50px) scale(1.2); opacity: 0.25; }
+            66% { transform: translate(-20px, 20px) scale(0.8); opacity: 0.15; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+        }
+
+        /* Twinkling Animation */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .star-particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Delicate scrollbar for medical articles */
+        .delicate-scrollbar::-webkit-scrollbar {
+            width: 3px;
+        }
+        .delicate-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .delicate-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(230, 57, 70, 0.3);
+            border-radius: 10px;
+        }
+        .delicate-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(230, 57, 70, 0.3) transparent;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+</head>
+<body class="selection:bg-primary/30 selection:text-white">
+    <div id="root"></div>
+</body>
+</html>
